@@ -1,0 +1,4 @@
+Car-2.00
+Van-4.00
+FourbyFour-6.00
+Truck-5.00
