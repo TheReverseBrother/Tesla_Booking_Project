@@ -14,9 +14,9 @@ public class Truck extends Vehicle
     private double loadspaceTruck;
     static double costpermileTruck;
 
-    public Truck( String make, String model, int milesPerKH, int seats, String registration, double costPerMile, double mileage, Location location, boolean inDepot, double loadspaceTruck)
+    public Truck( String make, String model, int milesPerKH, int seats, String registration, double mileage, Location location, boolean inDepot, double loadspaceTruck)
     {
-        super("Truck", make, model, milesPerKH, seats, registration, costPerMile, mileage, location, inDepot);
+        super("Truck", make, model, milesPerKH, seats, registration, costpermileTruck, mileage, location, inDepot);
         this.loadspaceTruck = loadspaceTruck;
     }
 

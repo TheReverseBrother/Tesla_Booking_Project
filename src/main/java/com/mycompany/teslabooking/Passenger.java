@@ -4,14 +4,14 @@ public class Passenger
 {
     private String name;
     private static int totalCustomers;
-    private int customerID;
+    private int passengerID;
     private String email;
     private int phoneNumber;
     private Location home;
 
-    public Passenger(String name, int customerID, String email, int phoneNumber, Location home) {
+    public Passenger(String name, int passengerID, String email, int phoneNumber, Location home) {
         this.name = name;
-        this.customerID = customerID;
+        this.passengerID = passengerID;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.home = home;
@@ -25,8 +25,8 @@ public class Passenger
         return totalCustomers;
     }
 
-    public int getCustomerID() {
-        return customerID;
+    public int getPassengerID() {
+        return passengerID;
     }
 
     public String getEmail() {
@@ -51,7 +51,7 @@ public class Passenger
 
     @Override
     public String toString() {
-        return "Passenger{" + "name=" + name + ", customerID=" + customerID + ", email=" + email + ", phoneNumber=" + phoneNumber + ", home=" + home + '}';
+        return "Passenger{" + "name=" + name + ", passengerID=" + passengerID + ", email=" + email + ", phoneNumber=" + phoneNumber + ", home=" + home + '}';
     }
     
     

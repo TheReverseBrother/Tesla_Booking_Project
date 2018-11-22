@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main
+
+        /**
+         * None of the code is this project used the Project skeleton code available on moodle
+         * each part of this is of my own design.
+         */
 {
     public ArrayList<Vehicle> VehicleList = new ArrayList<Vehicle>();
     ArrayList<Passenger> PassengerList = new ArrayList<Passenger>();
@@ -19,11 +24,13 @@ public class Main
 
     public static void main(String[] args) throws FileNotFoundException
     {
+        SetAndSave.setCosts();
         ArrayList<Vehicle> VehicleList = new ArrayList<Vehicle>();
         Car car1 = new Car("1","1",1,1,"11",
                 1,new Location(2.0,2.0), false);
 
         System.out.println(car1.getType());
+        System.out.println(car1.getCostPerMile());
         //writeTofile(VehicleList);
         readFromFile();
         SetAndSave.saveCosts();

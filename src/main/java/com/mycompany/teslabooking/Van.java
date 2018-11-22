@@ -14,7 +14,8 @@ public class Van extends Vehicle
     private double vanLoadSpace;
     static double costpermileVan;
 
-    public Van(double vanLoadSpace, String make, String model, int milesPerKH, int seats, String registration, double mileage, Location location, boolean inDepot)
+    public Van( String make, String model, int milesPerKH,
+               int seats, String registration, double mileage, Location location, boolean inDepot, double vanLoadSpace)
     {
         super("Van",make, model, milesPerKH, seats, registration, costpermileVan, mileage, location, inDepot);
         this.vanLoadSpace = vanLoadSpace;
