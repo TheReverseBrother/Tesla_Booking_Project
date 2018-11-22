@@ -1,23 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.teslabooking;
 
-import java.io.*;
-import java.util.Scanner;
-import java.io.IOException;
+import java.io.File;
 import java.io.FileNotFoundException;
-/**
- *
- * @author Tomas
- */
-public class reader 
-{
-    public static void main(String[] args) throws FileNotFoundException
-    {
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
+public class SetAndSave
+{
+    public static void setCosts() throws FileNotFoundException
+    {
         File inputFile = new File("carCost.txt");
 
         //link Scanner object with the File
@@ -41,6 +33,24 @@ public class reader
         System.out.println(FourbyFour.getCostpermileFourbyFour());
         System.out.println(Truck.getCostpermileTruck());
         System.out.println(Van.getCostpermileVan());
+    }
+    public static void saveCosts()
+    {
+        try(FileWriter costFile = new FileWriter("carCost.txt"))
+        {
+            costFile.write("2.00" + "\n");
+            costFile.write("2.00" + "\n");
+            costFile.write("2.00"+ "\n");
+            costFile.write("2.00"+ "\n");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setVehicles()
+    {
         
     }
 }

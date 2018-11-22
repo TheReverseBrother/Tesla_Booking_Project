@@ -19,16 +19,19 @@ public class Location
         this.latitude = latitude;
     }
 
-    public double getLongitude() {
+    public double getLongitude()
+    {
         return longitude;
     }
 
-    public double getLatitude() {
+    public double getLatitude()
+    {
         return latitude;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Location{" + "longitude=" + longitude + ", latitude=" + latitude + '}';
     }
     

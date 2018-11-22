@@ -14,7 +14,7 @@ public class Car extends Vehicle
     static double costpermileCar;
 
     public Car(String make, String model, int milesPerKH, int seats, String registration, double mileage, Location location, boolean inDepot) {
-        super(make, model, milesPerKH, seats, registration, costpermileCar, mileage, location, inDepot);
+        super("Car",make, model, milesPerKH, seats, registration, costpermileCar, mileage, location, inDepot);
     }
 
     public static double getCostpermileCar() {

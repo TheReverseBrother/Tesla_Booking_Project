@@ -15,7 +15,16 @@ public class FourbyFour extends Vehicle
     static double costpermileFourbyFour;
 
     public FourbyFour(String make, String model, int milesPerKH, int seats, String registration, double mileage, Location location, boolean inDepot) {
-        super(make, model, milesPerKH, seats, registration, costpermileFourbyFour, mileage, location, inDepot);
+        super("4x4",make, model, milesPerKH, seats, registration, costpermileFourbyFour, mileage, location, inDepot);
     }
-    
+
+    public static double getCostpermileFourbyFour()
+    {
+        return costpermileFourbyFour;
+    }
+
+    public static void setCostpermileFourbyFour(double costpermileFourbyFour)
+    {
+        FourbyFour.costpermileFourbyFour = costpermileFourbyFour;
+    }
 }
