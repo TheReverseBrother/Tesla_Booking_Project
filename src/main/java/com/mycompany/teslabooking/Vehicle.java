@@ -1,5 +1,7 @@
 package com.mycompany.teslabooking;
 
+import java.util.Objects;
+
 public class Vehicle
 {
     private String type;
@@ -70,6 +72,16 @@ public class Vehicle
         return mileage;
     }
 
+    public double getLatitude()
+    {
+        return this.getLatitude();
+    }
+
+    public double getLongitude()
+    {
+        return this.getLongitude();
+    }
+
     public void setCostPerMile(double costPerMile)
     {
         this.costPerMile = costPerMile;
@@ -99,6 +111,49 @@ public class Vehicle
     {
         this.inDepot = inDepot;
     }
+    public double getLoadSpace()
+    {
+        return 0.0;
+    }
 
-   
+    @Override
+    public String toString()
+    {
+        return "Vehicle{" +
+                "type='" + type + '\'' +
+                ", make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", milesPerKH=" + milesPerKH +
+                ", seats=" + seats +
+                ", registration='" + registration + '\'' +
+                ", costPerMile=" + costPerMile +
+                ", mileage=" + mileage +
+                ", location=" + location +
+                ", inDepot=" + inDepot +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vehicle vehicle = (Vehicle) o;
+        return milesPerKH == vehicle.milesPerKH &&
+                seats == vehicle.seats &&
+                Double.compare(vehicle.costPerMile, costPerMile) == 0 &&
+                Double.compare(vehicle.mileage, mileage) == 0 &&
+                inDepot == vehicle.inDepot &&
+                Objects.equals(type, vehicle.type) &&
+                Objects.equals(make, vehicle.make) &&
+                Objects.equals(model, vehicle.model) &&
+                Objects.equals(registration, vehicle.registration) &&
+                Objects.equals(location, vehicle.location);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(type, make, model, milesPerKH, seats, registration, costPerMile, mileage, location, inDepot);
+    }
 }

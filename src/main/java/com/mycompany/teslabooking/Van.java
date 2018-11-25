@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.teslabooking;
 
-/**
- *
- * @author Tomas
- */
 public class Van extends Vehicle
 {
     private double vanLoadSpace;
@@ -20,8 +11,8 @@ public class Van extends Vehicle
         super("Van",make, model, milesPerKH, seats, registration, costpermileVan, mileage, location, inDepot);
         this.vanLoadSpace = vanLoadSpace;
     }
-
-    public double getVanLoadSpace() {
+    @Override
+    public double getLoadSpace() {
         return vanLoadSpace;
     }
 
@@ -30,9 +21,9 @@ public class Van extends Vehicle
         return costpermileVan;
     }
 
-    public static void setCostpermileVan(double costpermileVan)
+    public static void setCostpermileVan(double costpermile)
     {
-        Van.costpermileVan = costpermileVan;
+        Van.costpermileVan = costpermile;
     }
     
     

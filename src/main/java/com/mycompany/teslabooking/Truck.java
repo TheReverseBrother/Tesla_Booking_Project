@@ -19,8 +19,8 @@ public class Truck extends Vehicle
         super("Truck", make, model, milesPerKH, seats, registration, costpermileTruck, mileage, location, inDepot);
         this.loadspaceTruck = loadspaceTruck;
     }
-
-    public double getLoadspaceTruck() {
+    @Override
+    public double getLoadSpace() {
         return loadspaceTruck;
     }
 

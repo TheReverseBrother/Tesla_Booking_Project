@@ -18,9 +18,11 @@ public class vehicleBooking
         this.bookingDT = bookingDT;
         this.startLocation = startLocation;
         this.endLocation = endLocation;
+        totalBookings++;
     }
 
-    public Calendar getCal() {
+    public Calendar getCal()
+    {
         return cal;
     }
 
@@ -52,6 +54,4 @@ public class vehicleBooking
     public String toString() {
         return "vehicleBooking{" + "cal=" + cal + ", passengerID=" + passengerID + ", bookingnumber=" + bookingnumber + ", bookingDT=" + bookingDT + ", startLocation=" + startLocation + ", endLocation=" + endLocation + '}';
     }
-
-    
 }

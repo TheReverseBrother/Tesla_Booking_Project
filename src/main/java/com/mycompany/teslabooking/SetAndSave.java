@@ -1,9 +1,7 @@
 package com.mycompany.teslabooking;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -30,11 +28,6 @@ public class SetAndSave
             Truck.setCostpermileTruck(input.nextDouble());
             //System.out.println(number);
         }
-        System.out.println(Car.getCostpermileCar());
-        System.out.println(Van.getCostpermileVan());
-        System.out.println(FourbyFour.getCostpermileFourbyFour());
-        System.out.println(Truck.getCostpermileTruck());
-        System.out.println(Van.getCostpermileVan());
     }
     public static void saveCosts()
     {
@@ -51,51 +44,106 @@ public class SetAndSave
         }
     }
 
-    public static void setVehicles(ArrayList<Vehicle> VehicleList) throws FileNotFoundException
+    /**
+     * Loads the array with all previously entered info
+     * @return
+     */
+    public static ArrayList<Vehicle> vehiclesList()
     {
-        File inputFile = new File("vehicles.txt");
-        Scanner input = new Scanner(inputFile);
-        while(input.hasNext())
+        ArrayList<Vehicle> VehicleList = new ArrayList<>();
+        try {
+            File inputFile = new File("vehicles.txt");
+            Scanner input = new Scanner(inputFile);
+            while (input.hasNext())
+            {
+                String line = input.nextLine();
+                String[] Info = line.split(",");
+                String type = Info[0];
+                String make = Info[1].trim();
+                String model = Info[2].trim();
+                int milesPerKH = Integer.parseInt(Info[3].trim());
+                int seats = Integer.parseInt(Info[4].trim());
+                String registration = Info[5].trim();
+                double mileage = Double.parseDouble(Info[6].trim());
+                double latitude = Double.parseDouble(Info[7].trim());
+                double longitude = Double.parseDouble(Info[8].trim());
+                boolean inDepot = Boolean.parseBoolean(Info[9].trim());//this is the problem need to check and see if writing to file works
+                System.out.println(type +make +model +milesPerKH +seats +registration +mileage +latitude+longitude +inDepot);
+                if (type.equals("Car"))
+                {
+                    System.out.println("Enter Car");
+                    VehicleList.add(new Car(make, model, milesPerKH, seats,
+                            registration, mileage, new Location(latitude, longitude), inDepot));
+                }
+                else if (type.equals("Van"))
+                {
+                    double loadspace = Double.parseDouble(Info[10].trim());
+                    System.out.println("LOAD SOACE" +loadspace);
+                    VehicleList.add(new Van(make, model, milesPerKH,
+                            seats, registration, mileage, new Location(latitude, longitude), inDepot, loadspace));
+                }
+                else if (type.equals("Truck"))
+                {
+                    double loadspace = Double.parseDouble(Info[10].trim());
+                    System.out.println("LOAD SOACE truck" +loadspace);
+                    VehicleList.add(new Truck(make, model, milesPerKH,
+                            seats, registration, mileage, new Location(latitude, longitude), inDepot, loadspace));
+                }
+                else if (type.equals("4x4"))
+                {
+                    System.out.println("Enter 4x4");
+                    VehicleList.add(new FourbyFour(make, model, milesPerKH,
+                            seats, registration, mileage, new Location(latitude, longitude), inDepot));
+                }
+                else {
+                    System.out.println("Error");
+                    break;
+                }
+            }
+            input.close();
+
+        }
+        catch(Exception e)
         {
-            String type = input.next();
+            System.out.println("Error Loading List");
+        }
+        return VehicleList;
+    }
 
-            String make = input.next();
-            String model = input.next();
-            int milesPerKH = input.nextInt();
-            int seats = input.nextInt();
-            String registration = input.next();
-            double mileage = input.nextDouble();
-            double latitude = input.nextDouble();
-            double longitude = input.nextDouble();
-            boolean inDepot = input.nextBoolean();
+    public static void saveVehicles(ArrayList VehicleList)
+    {
+        ArrayList<Vehicle> write = VehicleList;
+        String type,make,model,milesperKH,seats,registration,mileage,longitude,latitude,inDepot,loadspace;
 
-            if(type == "Car")
+        try(FileWriter costFile = new FileWriter("saveVehicles.txt"))
+        {
+            for(int i = 0; i < write.size(); i++)
             {
-                VehicleList.add(new Car(make, model, milesPerKH, seats,
-                        registration, mileage, new Location(latitude, longitude), inDepot));
+                type = ""+ write.get(i).getType();
+                make = "" +write.get(i).getMake();
+                model = "" +write.get(i).getModel();
+                milesperKH = "" +write.get(i).getModel();;
+                seats = "" +write.get(i).getModel();;
+                registration = "" +write.get(i).getModel();;
+                mileage = "" +write.get(i).getModel();;
+                longitude = "" +write.get(i).getModel();;
+                latitude = "" +write.get(i).getModel();;
+                inDepot = "" +write.get(i).getModel();;
+                if(type == "Van" || type == "Truck")
+                {
+                    loadspace = "" +write.get(i).getModel();
+                    costFile.write(""+type +"," +make+","+model+","+milesperKH+","+seats+","+registration
+                            +","+mileage+","+longitude+","+latitude+","+inDepot+","+loadspace+"\\n");
+                }
+                else {
+                    costFile.write("" + type + "," + make + "," + model + "," + milesperKH + "," + seats + "," + registration
+                            + "," + mileage + "," + longitude + "," + latitude + "," + inDepot+"\\n");
+                }
             }
-            else if(type == "Van")
-            {
-                double loadspace = input.nextDouble();
-                VehicleList.add(new Van(make, model, milesPerKH,
-                        seats, registration, mileage, new Location(latitude, longitude), inDepot, loadspace));
-            }
-            else if(type == "Truck")
-            {
-                double loadspace = input.nextDouble();
-                VehicleList.add(new Truck(make, model, milesPerKH,
-                        seats, registration, mileage, new Location(latitude, longitude), inDepot, loadspace));
-            }
-            else if(type == "4x4")
-            {
-                VehicleList.add(new FourbyFour(make, model, milesPerKH,
-                        seats, registration, mileage, new Location(latitude, longitude), inDepot));
-            }
-            else
-            {
-                System.out.println("Error");
-                break;
-            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
         }
     }
 }
