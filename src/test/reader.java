@@ -19,6 +19,8 @@ public class reader
 {
     public static void main(String[] args)
     {
+        float ten = 0860708107;
+        System.out.println(float);
 //        boolean checking = true;
 //        boolean checking2 = false;
 //            try(FileWriter costFile = new FileWriter("login.txt"))
@@ -30,7 +32,7 @@ public class reader
 //            {
 //                e.printStackTrace();
 //            }
-        vehiclesList();
+//        vehiclesList();
     }
 
 

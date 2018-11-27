@@ -4,48 +4,58 @@ public class Passenger
 {
     private String name;
     private static int totalCustomers;
-    private int passengerID;
+    private String passengerID;
     private String email;
-    private int phoneNumber;
+    private String phoneNumber;
     private Location home;
 
-    public Passenger(String name, int passengerID, String email, int phoneNumber, Location home) {
+    public Passenger(String name, String email, String phoneNumber, Location home) {
+        totalCustomers++;
         this.name = name;
-        this.passengerID = passengerID;
+        this.passengerID = "PSG-" +totalCustomers;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.home = home;
+        totalCustomers++;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public static int getTotalCustomers() {
+    public static int getTotalCustomers()
+    {
         return totalCustomers;
     }
 
-    public int getPassengerID() {
+    public String getPassengerID()
+    {
         return passengerID;
     }
 
-    public String getEmail() {
+    public String getEmail()
+    {
         return email;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber()
+    {
         return phoneNumber;
     }
 
-    public double getHomeLatitude() {
+    public double getHomeLatitude()
+    {
         return home.getLatitude();
     }
     
-    public double getHomeLongitude() {
+    public double getHomeLongitude()
+    {
         return home.getLongitude();
     }
 
-    public Location getHome() {
+    public Location getHome()
+    {
         return home;
     }
 

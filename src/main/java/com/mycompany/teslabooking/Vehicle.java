@@ -74,12 +74,12 @@ public class Vehicle
 
     public double getLatitude()
     {
-        return this.getLatitude();
+        return location.getLatitude();
     }
 
     public double getLongitude()
     {
-        return this.getLongitude();
+        return location.getLongitude();
     }
 
     public void setCostPerMile(double costPerMile)

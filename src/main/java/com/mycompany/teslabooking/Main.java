@@ -23,9 +23,12 @@ public class Main
     public static void main(String[] args) throws FileNotFoundException
     {
         ArrayList<Vehicle> VehicleList = new ArrayList<>();
+        ArrayList<Passenger> PassengerList = new ArrayList<>();
         try{
 //            SetAndSave.setCosts();
+//            PassengerList = SetAndSave.PassengerList();
             VehicleList = SetAndSave.vehiclesList();
+            PassengerList = SetAndSave.PassengerList();
 
             for(int i = 0; i<VehicleList.size(); i++)
             {

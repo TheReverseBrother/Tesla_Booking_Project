@@ -1,29 +1,25 @@
 package com.mycompany.teslabooking;
 
-import java.util.Calendar;
 
 public class vehicleBooking
 {
-    Calendar cal = Calendar.getInstance();
     private String passengerID;
     private static int totalBookings;
     private int bookingnumber;
     private String bookingDT;
     private Location startLocation;
     private Location endLocation;
+    private String vehicleBooked;
 
-    public vehicleBooking(String passengerID, int bookingnumber, String bookingDT, Location startLocation, Location endLocation) {
+    public vehicleBooking( String passengerID, String bookingDT, Location startLocation, Location endLocation, String vehicleBooked)
+    {
+        totalBookings++;
         this.passengerID = passengerID;
-        this.bookingnumber = bookingnumber;
+        this.bookingnumber = totalBookings;
         this.bookingDT = bookingDT;
         this.startLocation = startLocation;
         this.endLocation = endLocation;
-        totalBookings++;
-    }
-
-    public Calendar getCal()
-    {
-        return cal;
+        this.vehicleBooked = vehicleBooked;
     }
 
     public String getPassengerID() {
@@ -41,6 +37,23 @@ public class vehicleBooking
     public String getBookingDT() {
         return bookingDT;
     }
+    
+    public double getStartlattitude()
+    {
+        return startLocation.getLatitude();
+    }
+    public double getStartLongitude()
+    {
+        return startLocation.getLongitude();
+    }
+    public double getEndlattitude()
+    {
+        return endLocation.getLatitude();
+    }
+    public double getEndLongitude()
+    {
+        return endLocation.getLongitude();
+    }
 
     public Location getStartLocation() {
         return startLocation;
@@ -50,8 +63,14 @@ public class vehicleBooking
         return endLocation;
     }
 
+    public String getVehicleBooked()
+    {
+        return vehicleBooked;
+    }
+
     @Override
     public String toString() {
-        return "vehicleBooking{" + "cal=" + cal + ", passengerID=" + passengerID + ", bookingnumber=" + bookingnumber + ", bookingDT=" + bookingDT + ", startLocation=" + startLocation + ", endLocation=" + endLocation + '}';
+        return "vehicleBooking{" +"passengerID=" + passengerID + ", bookingnumber=" + bookingnumber + ", bookingDT="
+                + bookingDT + ", startLocation=" + startLocation + ", endLocation=" + endLocation + '}';
     }
 }

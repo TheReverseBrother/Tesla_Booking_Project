@@ -2,12 +2,15 @@ package com.mycompany.teslabooking;
 
 
 import java.io.*;
+import java.sql.Date;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
 
 public class SetAndSave
 {
+
     public static void setCosts() throws FileNotFoundException
     {
         File inputFile = new File("carCost.txt");
@@ -115,30 +118,131 @@ public class SetAndSave
         ArrayList<Vehicle> write = VehicleList;
         String type,make,model,milesperKH,seats,registration,mileage,longitude,latitude,inDepot,loadspace;
 
-        try(FileWriter costFile = new FileWriter("saveVehicles.txt"))
+        try(FileWriter costFile = new FileWriter("vehicles.txt"))
         {
             for(int i = 0; i < write.size(); i++)
             {
                 type = ""+ write.get(i).getType();
                 make = "" +write.get(i).getMake();
                 model = "" +write.get(i).getModel();
-                milesperKH = "" +write.get(i).getModel();;
-                seats = "" +write.get(i).getModel();;
-                registration = "" +write.get(i).getModel();;
-                mileage = "" +write.get(i).getModel();;
-                longitude = "" +write.get(i).getModel();;
-                latitude = "" +write.get(i).getModel();;
-                inDepot = "" +write.get(i).getModel();;
-                if(type == "Van" || type == "Truck")
+                milesperKH = "" +write.get(i).getMilesPerKH();
+                seats = "" +write.get(i).getSeats();
+                registration = "" +write.get(i).getRegistration();
+                mileage = "" +write.get(i).getMileage();
+                longitude = "" +write.get(i).getLongitude();
+                latitude = "" +write.get(i).getLatitude();
+                inDepot = "" +write.get(i).isInDepot();
+                if(write.get(i).getType() == "Van" || write.get(i).getType() == "Truck")//type == "Van" || type == "Truck"
                 {
-                    loadspace = "" +write.get(i).getModel();
+                    loadspace = "" +write.get(i).getLoadSpace();
                     costFile.write(""+type +"," +make+","+model+","+milesperKH+","+seats+","+registration
-                            +","+mileage+","+longitude+","+latitude+","+inDepot+","+loadspace+"\\n");
+                            +","+mileage+","+longitude+","+latitude+","+inDepot+","+loadspace+"\n");
                 }
                 else {
                     costFile.write("" + type + "," + make + "," + model + "," + milesperKH + "," + seats + "," + registration
-                            + "," + mileage + "," + longitude + "," + latitude + "," + inDepot+"\\n");
+                            + "," + mileage + "," + longitude + "," + latitude + "," + inDepot+"\n");
                 }
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Passenger> PassengerList()
+    {
+        ArrayList<Passenger> PassengerList = new ArrayList<>();
+        try {
+            File inputFile = new File("passengers.txt");
+            Scanner input = new Scanner(inputFile);
+            while (input.hasNext())
+            {
+                String line = input.nextLine();
+                String[] Info = line.split(",");
+                String name = Info[0].trim();
+                String email = Info[1].trim();
+                String phone = Info[2].trim();
+                double lattitude = Double.parseDouble(Info[3].trim());
+                double longitude  = Double.parseDouble(Info[4].trim());
+                PassengerList.add(new Passenger(name,email,phone,new Location(lattitude,longitude)));
+            }
+            input.close();
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error Loading List");
+        }
+        return PassengerList;
+    }
+
+    public static void savePassengers(ArrayList PassengerList)
+    {
+        ArrayList<Passenger> write = PassengerList;
+        String name,email,phone,longitude,latitude;
+
+        try(FileWriter passengerFile = new FileWriter("passengers.txt"))
+        {
+            for(int i = 0; i < write.size(); i++)
+            {
+                name = ""+ write.get(i).getName();
+                email = "" +write.get(i).getEmail();
+                phone = "" +write.get(i).getPhoneNumber();
+                longitude = "" +write.get(i).getHomeLongitude();;
+                latitude = "" +write.get(i).getHomeLatitude();;
+                    passengerFile.write(name+","+email+","+phone+","+longitude+","+latitude+"\\n");
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<vehicleBooking> BookingList()
+    {
+        ArrayList<vehicleBooking> BookingList = new ArrayList<>();
+        try {
+            File inputFile = new File("bookings.txt");
+            Scanner input = new Scanner(inputFile);
+            while (input.hasNext())
+            {
+                String line = input.nextLine();
+                String[] Info = line.split(",");
+                String psgID = Info[0].trim();
+                String date = Info[1].trim();
+                double slongitude  = Double.parseDouble(Info[2].trim());
+                double slattitude = Double.parseDouble(Info[3].trim());
+                double elongitude  = Double.parseDouble(Info[4].trim());
+                double elattitude = Double.parseDouble(Info[5].trim());
+                String registration = Info[6].trim();
+                BookingList.add(new vehicleBooking(psgID,date,new Location(slongitude,slattitude),new Location(elongitude,elattitude),registration));
+            }
+            input.close();
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error Loading List");
+        }
+        return BookingList;
+    }
+    public static void saveBookings(ArrayList BookingList)
+    {
+        ArrayList<vehicleBooking> write = BookingList;
+        String PassengerID,date,slongitude,slattitude,elongitude,elattitude, registration;
+
+        try(FileWriter bookFile = new FileWriter("bookings.txt"))
+        {
+            for(int i = 0; i < write.size(); i++)
+            {
+                PassengerID = ""+ write.get(i).getPassengerID();
+                date = "" +write.get(i).getBookingDT();
+                slongitude = "" +write.get(i).getStartLongitude();
+                slattitude = "" +write.get(i).getStartlattitude();
+                elongitude = "" +write.get(i).getEndLongitude();
+                elattitude = "" +write.get(i).getEndlattitude();
+                registration = "" +write.get(i).getVehicleBooked();
+                bookFile.write(PassengerID+","+date+","+slongitude+","+slattitude+","+elongitude+","+elattitude+","+registration+"\n");
             }
         }
         catch (IOException e)
