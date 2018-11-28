@@ -11,26 +11,33 @@ import java.text.SimpleDateFormat;
 public class SetAndSave
 {
 
-    public static void setCosts() throws FileNotFoundException
+    public static void setCosts()
     {
-        File inputFile = new File("carCost.txt");
+        try{
+            File inputFile = new File("carCost.txt");
 
-        //link Scanner object with the File
-        Scanner input = new Scanner(inputFile);
-        double number;
-        double average;
-        int total = 0;
-        int count = 0;
+            //link Scanner object with the File
+            Scanner input = new Scanner(inputFile);
+            double number;
+            double average;
+            int total = 0;
+            int count = 0;
 
-        while (input.hasNext())          // more values in file?
-        {
-            //number = input.nextDouble();
-            Car.setCostpermileCar(input.nextDouble());
-            Van.setCostpermileVan(input.nextDouble());// read next intege
-            FourbyFour.setCostpermileFourbyFour(input.nextDouble());
-            Truck.setCostpermileTruck(input.nextDouble());
-            //System.out.println(number);
+            while (input.hasNext())          // more values in file?
+            {
+                //number = input.nextDouble();
+                Car.setCostpermileCar(input.nextDouble());
+                Van.setCostpermileVan(input.nextDouble());// read next intege
+                FourbyFour.setCostpermileFourbyFour(input.nextDouble());
+                Truck.setCostpermileTruck(input.nextDouble());
+                //System.out.println(number);
+            }
         }
+        catch(FileNotFoundException e)
+        {
+            System.out.println("Error Loading Costs");
+        }
+
     }
     public static void saveCosts()
     {
@@ -71,35 +78,29 @@ public class SetAndSave
                 double latitude = Double.parseDouble(Info[7].trim());
                 double longitude = Double.parseDouble(Info[8].trim());
                 boolean inDepot = Boolean.parseBoolean(Info[9].trim());//this is the problem need to check and see if writing to file works
-                System.out.println(type +make +model +milesPerKH +seats +registration +mileage +latitude+longitude +inDepot);
                 if (type.equals("Car"))
                 {
-                    System.out.println("Enter Car");
                     VehicleList.add(new Car(make, model, milesPerKH, seats,
                             registration, mileage, new Location(latitude, longitude), inDepot));
                 }
                 else if (type.equals("Van"))
                 {
                     double loadspace = Double.parseDouble(Info[10].trim());
-                    System.out.println("LOAD SOACE" +loadspace);
                     VehicleList.add(new Van(make, model, milesPerKH,
                             seats, registration, mileage, new Location(latitude, longitude), inDepot, loadspace));
                 }
                 else if (type.equals("Truck"))
                 {
                     double loadspace = Double.parseDouble(Info[10].trim());
-                    System.out.println("LOAD SOACE truck" +loadspace);
                     VehicleList.add(new Truck(make, model, milesPerKH,
                             seats, registration, mileage, new Location(latitude, longitude), inDepot, loadspace));
                 }
                 else if (type.equals("4x4"))
                 {
-                    System.out.println("Enter 4x4");
                     VehicleList.add(new FourbyFour(make, model, milesPerKH,
                             seats, registration, mileage, new Location(latitude, longitude), inDepot));
                 }
                 else {
-                    System.out.println("Error");
                     break;
                 }
             }
@@ -108,7 +109,7 @@ public class SetAndSave
         }
         catch(Exception e)
         {
-            System.out.println("Error Loading List");
+            System.out.println("Error Loading Vehicles");
         }
         return VehicleList;
     }
@@ -147,6 +148,8 @@ public class SetAndSave
         catch (IOException e)
         {
             e.printStackTrace();
+            System.out.println("Error Saving vehicles List, the info is inputed " +
+                    "automatically if you see this Tomas you fucked it up beyond belief");
         }
     }
 
@@ -171,7 +174,7 @@ public class SetAndSave
         }
         catch(Exception e)
         {
-            System.out.println("Error Loading List");
+            System.out.println("Error Loading Passenger List");
         }
         return PassengerList;
     }
@@ -190,12 +193,13 @@ public class SetAndSave
                 phone = "" +write.get(i).getPhoneNumber();
                 longitude = "" +write.get(i).getHomeLongitude();;
                 latitude = "" +write.get(i).getHomeLatitude();;
-                    passengerFile.write(name+","+email+","+phone+","+longitude+","+latitude+"\\n");
+                    passengerFile.write(name+","+email+","+phone+","+longitude+","+latitude+"\n");
             }
         }
         catch (IOException e)
         {
             e.printStackTrace();
+            System.out.println("Failed To save Passengers");
         }
     }
 
@@ -216,7 +220,8 @@ public class SetAndSave
                 double elongitude  = Double.parseDouble(Info[4].trim());
                 double elattitude = Double.parseDouble(Info[5].trim());
                 String registration = Info[6].trim();
-                BookingList.add(new vehicleBooking(psgID,date,new Location(slongitude,slattitude),new Location(elongitude,elattitude),registration));
+                double cost = Double.parseDouble(Info[7].trim());
+                BookingList.add(new vehicleBooking(psgID,date,new Location(slongitude,slattitude),new Location(elongitude,elattitude),registration, cost));
             }
             input.close();
         }
@@ -226,10 +231,11 @@ public class SetAndSave
         }
         return BookingList;
     }
+
     public static void saveBookings(ArrayList BookingList)
     {
         ArrayList<vehicleBooking> write = BookingList;
-        String PassengerID,date,slongitude,slattitude,elongitude,elattitude, registration;
+        String PassengerID,date,slongitude,slattitude,elongitude,elattitude, registration, cost;
 
         try(FileWriter bookFile = new FileWriter("bookings.txt"))
         {
@@ -242,7 +248,8 @@ public class SetAndSave
                 elongitude = "" +write.get(i).getEndLongitude();
                 elattitude = "" +write.get(i).getEndlattitude();
                 registration = "" +write.get(i).getVehicleBooked();
-                bookFile.write(PassengerID+","+date+","+slongitude+","+slattitude+","+elongitude+","+elattitude+","+registration+"\n");
+                cost = "" +write.get(i).getBookingCost();
+                bookFile.write(PassengerID+","+date+","+slongitude+","+slattitude+","+elongitude+","+elattitude+","+registration+","+cost+"\n");
             }
         }
         catch (IOException e)

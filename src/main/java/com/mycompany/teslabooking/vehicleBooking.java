@@ -10,8 +10,9 @@ public class vehicleBooking
     private Location startLocation;
     private Location endLocation;
     private String vehicleBooked;
+    private double bookingCost;
 
-    public vehicleBooking( String passengerID, String bookingDT, Location startLocation, Location endLocation, String vehicleBooked)
+    public vehicleBooking(String passengerID, String bookingDT, Location startLocation, Location endLocation, String vehicleBooked, double bookingCost)
     {
         totalBookings++;
         this.passengerID = passengerID;
@@ -20,6 +21,7 @@ public class vehicleBooking
         this.startLocation = startLocation;
         this.endLocation = endLocation;
         this.vehicleBooked = vehicleBooked;
+        this.bookingCost = bookingCost;
     }
 
     public String getPassengerID() {
@@ -37,7 +39,12 @@ public class vehicleBooking
     public String getBookingDT() {
         return bookingDT;
     }
-    
+
+    public double getBookingCost()
+    {
+        return bookingCost;
+    }
+
     public double getStartlattitude()
     {
         return startLocation.getLatitude();

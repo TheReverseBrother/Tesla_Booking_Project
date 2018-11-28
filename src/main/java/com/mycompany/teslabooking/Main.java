@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.Formattable;
 
 public class Main
 
@@ -20,30 +21,17 @@ public class Main
 {
 
 
-    public static void main(String[] args) throws FileNotFoundException
+    public static void main(String[] args)
     {
-        ArrayList<Vehicle> VehicleList = new ArrayList<>();
-        ArrayList<Passenger> PassengerList = new ArrayList<>();
-        try{
-//            SetAndSave.setCosts();
-//            PassengerList = SetAndSave.PassengerList();
-            VehicleList = SetAndSave.vehiclesList();
-            PassengerList = SetAndSave.PassengerList();
+        SetAndSave.setCosts();
+        ArrayList<Vehicle> VehicleList = SetAndSave.vehiclesList();
+        ArrayList<Passenger> PassengerList = SetAndSave.PassengerList();
+        ArrayList<vehicleBooking> Bookings = SetAndSave.BookingList();
 
-            for(int i = 0; i<VehicleList.size(); i++)
-            {
-                System.out.println(VehicleList.get(i).getMake());
-                String name = VehicleList.get(i).getType();
-                if(name == "Truck")
-                {
-                    System.out.println(VehicleList.get(i).getLoadSpace());
-                }
-            }
-            SetAndSave.saveVehicles(VehicleList);
-        }catch(Exception e)
-        {
-            System.out.println("Fuck me sidewas daddy");
-        }
+//        displayPassengers(PassengerList);
+        displayBookings(Bookings);
+//        SetAndSave.saveCosts();
+
 
 //        Car car1 = new Car("BOOM","1",1,1,"11",
 //                1,new Location(2.0,2.0), false);
@@ -58,7 +46,10 @@ public class Main
 //        System.out.println(car1.isInDepot());
 ////        System.out.println(car1.getLocation());
 //        readFromFile();
-//        SetAndSave.saveCosts();
+        SetAndSave.saveCosts();
+        SetAndSave.saveVehicles(VehicleList);
+        SetAndSave.savePassengers(PassengerList);
+        SetAndSave.saveBookings(Bookings);
     }
 
     public void createBooking()
@@ -66,17 +57,54 @@ public class Main
 
     }
 
-    public void displayBookings()
+    public static void displayBookings(ArrayList<vehicleBooking> Bookings)
     {
+        String passengerID,bookingnumber,bookingDT,startLocation,endLocation,vehicleBooked,cost;
+
+        String format = "|%1$-15s|%2$-25s|%3$-25s|%4$-20s|%5$-20s|%6$-20s|%7$-10s|\n";
+        System.out.println("_________________________________________________________________________________________________________________________________________________________________");
+        System.out.println("|_______________________________________________________________________________________________________________________________________________________________|");
+        System.out.format(format,"PassengerID","Booking Number","Booking Date","Start Location","End Location","Vehicle Booked","Cost");
+        for(int i = 0; i <Bookings.size();i++)
+        {
+            passengerID = Bookings.get(i).getPassengerID();
+            bookingnumber = "" +Bookings.get(i).getBookingnumber();
+            bookingDT = "" +Bookings.get(i).getBookingDT();
+            startLocation = ""+ Bookings.get(i).getStartLocation();
+            endLocation = "" + Bookings.get(i).getEndLocation();
+            vehicleBooked = ""+ Bookings.get(i).getVehicleBooked();
+            cost = ""+Bookings.get(i).getBookingCost();
+            System.out.format(format, passengerID, bookingnumber, bookingDT,startLocation,endLocation,vehicleBooked,cost);
+        }
+        System.out.println("|________________________________________________________________________" +
+                "_______________________________________________________________________________________|");
 
     }
 
-    public void displayPassengers()
+    public static void displayPassengers(ArrayList<Passenger> PassengerList)
     {
+        String passengerID,name,email,phoneNo,home;
 
+        String format = "|%1$-15s|%2$-20s|%3$-25s|%4$-35s|%5$-34s|\n";
+        System.out.println("_______________________________________________" +
+                "__________________________________________________________________________________________________________________");
+        System.out.println("|_________________________________________________________" +
+                "______________________________________________________________________________________________________|");
+        System.out.format(format,"PassengerID","Booking Number","Booking Date","Start Location","End Location","Vehicle Booked");
+        for(int i = 0; i <PassengerList.size();i++)
+        {
+            passengerID = PassengerList.get(i).getPassengerID();
+            name = "" +PassengerList.get(i).getName();
+            email = "" +PassengerList.get(i).getEmail();
+            phoneNo = ""+ PassengerList.get(i).getPhoneNumber();
+            home = "" + PassengerList.get(i).getHome();
+            System.out.format(format, passengerID, name, email,phoneNo,home);
+        }
+        System.out.println("|________________________________________________________________________" +
+                "_______________________________________________________________________________________|");
     }
 
-    public void displayVehicles()
+    public void displayVehicles(ArrayList<Vehicle> vehicleList,String selected)
     {
 
     }
