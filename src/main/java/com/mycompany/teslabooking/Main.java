@@ -19,8 +19,6 @@ public class Main
          * each part of this is of my own design.
          */
 {
-
-
     public static void main(String[] args)
     {
         SetAndSave.setCosts();
@@ -44,7 +42,7 @@ public class Main
 
 //        System.out.println(car1.getType());
 //        System.out.println(car1.isInDepot());
-////        System.out.println(car1.getLocation());
+//        System.out.println(car1.getLocation());
 //        readFromFile();
         SetAndSave.saveCosts();
         SetAndSave.saveVehicles(VehicleList);
