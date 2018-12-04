@@ -12,22 +12,27 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.Formattable;
 
-public class Main
+public class Main{
 
         /**
          * None of the code is this project used the Project skeleton code available on moodle
          * each part of this is of my own design.
          */
-{
+    static ArrayList<Vehicle> VehicleList = SetAndSave.vehiclesList();
+    static ArrayList<Passenger> PassengerList = SetAndSave.PassengerList();
+    static ArrayList<vehicleBooking> Bookings = SetAndSave.BookingList();
     public static void main(String[] args)
     {
+        boolean running = true;
         SetAndSave.setCosts();
-        ArrayList<Vehicle> VehicleList = SetAndSave.vehiclesList();
-        ArrayList<Passenger> PassengerList = SetAndSave.PassengerList();
-        ArrayList<vehicleBooking> Bookings = SetAndSave.BookingList();
+        System.out.println("----Welcome To Tesla----");
+        while(running)
+        {
 
+        }
+        System.out.println("Thank You Come Again Soon.");
 //        displayPassengers(PassengerList);
-        displayBookings(Bookings);
+//        displayBookings(Bookings);
 //        SetAndSave.saveCosts();
 
 
@@ -102,55 +107,152 @@ public class Main
                 "_______________________________________________________________________________________|");
     }
 
-    public void displayVehicles(ArrayList<Vehicle> vehicleList,String selected)
+
+    public static void mainMenu()
     {
+
+        System.out.println("Please Choose An Option:");
+        System.out.println("(1):Passengers");
+        System.out.println("(2):Bookings");
+        System.out.println("(3):Vehicles");
+        System.out.println("(4): Quit");
+    }
+
+    public static void passengerMenu()
+    {
+        System.out.println("Please Choose An Option:");
+        System.out.println("(1):View All Passengers");
+        System.out.println("(2):Add Passengers");
+        System.out.println("(3):Remove Passenger");
+        System.out.println("(4): Quit");
+    }
+
+    public static void vehicleMenu()
+    {
+        System.out.println("Please Choose An Option:");
+        System.out.println("(1):View All Vehicles");
+        System.out.println("(2):Add vehicle");
+        System.out.println("(3):Quit");
+    }
+    public static void bookingsMenu()
+    {
+        System.out.println("Please Choose An Option:");
+        System.out.println("(1):View All Bookings");
+        System.out.println("(2):Add Booking");
+        System.out.println("(3):Remove Booking");
+        System.out.println("(4):Quit");
+    }
+    enum Mainmenu {Passengers,Bookings,Vehicles,Quit;}
+    public static void mainMenuSelector()
+    {
+        Scanner keyboard = new Scanner(System.in);
+        int input = keyboard.nextInt();
+        Mainmenu options = Mainmenu.values()[input];
+        switch(options)
+        {
+            case Passengers:
+                passengerMenu();
+                break;
+            case Bookings:
+
+                break;
+            case Vehicles:
+                vehicleMenu();
+                break;
+            case Quit:
+                System.out.println("HI");
+                break;
+            default:
+                System.out.println("Invalid Input.");
+
+        }
+    }
+    enum GeneralMenu{View,Add,Remove,Quit;}
+    public static void passengerMenuSelector()
+    {
+        Scanner keyboard = new Scanner(System.in);
+        int input = keyboard.nextInt();
+        GeneralMenu options = GeneralMenu.values()[input];
+        switch(options)
+        {
+            case View:
+                passengerMenu();
+                break;
+            case Add:
+
+                break;
+            case Remove:
+                vehicleMenu();
+                break;
+            case Quit:
+                System.out.println("HI");
+                break;
+            default:
+                System.out.println("Invalid Input.");
+
+        }
+    }
+
+
+    public static void vehicleMenuSelector()
+    {
+        Scanner keyboard = new Scanner(System.in);
+        int input = keyboard.nextInt();
+        GeneralMenu options = GeneralMenu.values()[input];
+        switch(options)
+        {
+            case View:
+                passengerMenu();
+                break;
+            case Add:
+
+                break;
+            case Remove:
+                vehicleMenu();
+                break;
+            case Quit:
+                System.out.println("HI");
+                break;
+            default:
+                System.out.println("Invalid Input.");
+
+        }
+    }
+
+
+    public static void bookingMenuSelector()
+    {
+        Scanner keyboard = new Scanner(System.in);
+        int input = keyboard.nextInt();
+        GeneralMenu options = GeneralMenu.values()[input];
+        switch(options)
+        {
+            case View:
+                passengerMenu();
+                break;
+            case Add:
+
+                break;
+            case Remove:
+                vehicleMenu();
+                break;
+            case Quit:
+                System.out.println("HI");
+                break;
+            default:
+                System.out.println("Invalid Input.");
+
+        }
+    }
+
+    public static void AddPassenger()
+    {
+        Scanner sc = new Scanner(System.in);
+        String name,email,phone,
+
+        System.out.println("Please Enter Passenger Name");
 
     }
 
-    public void addPassenger()
-    {
 
-    }
-
-//    public static void writeTofile(ArrayList<Vehicle> VehicleList)
-//    {
-//        try(FileWriter costFile = new FileWriter("carCost.txt"))
-//        {
-//            for(int i = 0; i <VehicleList.size(); i++){
-//                costFile.write( "CUNT FACE TWAT" + "\n");
-//            }
-//        }
-//        catch (IOException e)
-//        {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public static void readFromFile() throws FileNotFoundException
-//    {
-//        File inputFile = new File("carCost.txt");
-//
-//        //link Scanner object with the File
-//        Scanner input = new Scanner(inputFile);
-//        double number;
-//        double average;
-//        int total = 0;
-//        int count = 0;
-//
-//        while (input.hasNext())          // more values in file?
-//        {
-//            //number = input.nextDouble();
-//            Car.setCostpermileCar(input.nextDouble());
-//            Van.setCostpermileVan(input.nextDouble());// read next intege
-//            FourbyFour.setCostpermileFourbyFour(input.nextDouble());
-//            Truck.setCostpermileTruck(input.nextDouble());
-//            //System.out.println(number);
-//        }
-//        System.out.println(Car.getCostpermileCar());
-//        System.out.println(Van.getCostpermileVan());
-//        System.out.println(FourbyFour.getCostpermileFourbyFour());
-//        System.out.println(Truck.getCostpermileTruck());
-//        System.out.println(Van.getCostpermileVan());
-//
-//    }
 }
