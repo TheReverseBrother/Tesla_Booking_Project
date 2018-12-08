@@ -1,8 +1,8 @@
-Car,Tesla,Model S,150,5,161-D-3458,9000,60.08,45.98,false
+Car,Tesla,Model S,150,5,161-D-3458,9000,60.08,45.98,true
 Car,Tesla,Model S,150,5,161-MN-0123,10000,60.08,45.98,false
 Car,Tesla,Model S,150,5,161-D-4987,10000,60.08,45.98,false
 Car,Tesla,Model S,150,5,161-MN-9856,10000,60.08,45.98,false
-Car,Tesla,Model S,150,5,161-D-5789,10000,60.08,45.98,false
+Car,Tesla,Model S,150,5,161-D-5789,10000,60.08,45.98,true
 Van,Ford,Transit,100,3,181-CW-2014,10000,60.08,45.98,false,10.0
 Van,Ford,Transit,100,3,181-LD-3458,9000,60.08,45.98,false,10.0
 Van,Ford,Transit,100,3,181-CW-0123,10000,60.08,45.98,false,10.0

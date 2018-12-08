@@ -75,6 +75,46 @@ public class vehicleBooking
         return vehicleBooked;
     }
 
+    public void setPassengerID(String passengerID)
+    {
+        this.passengerID = passengerID;
+    }
+
+    public static void setTotalBookings(int totalBookings)
+    {
+        vehicleBooking.totalBookings = totalBookings;
+    }
+
+    public void setBookingnumber(int bookingnumber)
+    {
+        this.bookingnumber = bookingnumber;
+    }
+
+    public void setBookingDT(String bookingDT)
+    {
+        this.bookingDT = bookingDT;
+    }
+
+    public void setStartLocation(Location startLocation)
+    {
+        this.startLocation = startLocation;
+    }
+
+    public void setEndLocation(Location endLocation)
+    {
+        this.endLocation = endLocation;
+    }
+
+    public void setVehicleBooked(String vehicleBooked)
+    {
+        this.vehicleBooked = vehicleBooked;
+    }
+
+    public void setBookingCost(double bookingCost)
+    {
+        this.bookingCost = bookingCost;
+    }
+
     @Override
     public String toString() {
         return "vehicleBooking{" +"passengerID=" + passengerID + ", bookingnumber=" + bookingnumber + ", bookingDT="

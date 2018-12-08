@@ -59,6 +59,36 @@ public class Passenger
         return home;
     }
 
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public static void setTotalCustomers(int totalCustomers)
+    {
+        Passenger.totalCustomers = totalCustomers;
+    }
+
+    public void setPassengerID(String passengerID)
+    {
+        this.passengerID = passengerID;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
+
+    public void setPhoneNumber(String phoneNumber)
+    {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setHome(Location home)
+    {
+        this.home = home;
+    }
+
     @Override
     public String toString() {
         return "Passenger{" + "name=" + name + ", passengerID=" + passengerID + ", email=" + email + ", phoneNumber=" + phoneNumber + ", home=" + home + '}';
