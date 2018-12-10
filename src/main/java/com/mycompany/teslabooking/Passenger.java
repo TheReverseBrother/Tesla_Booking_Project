@@ -16,7 +16,6 @@ public class Passenger
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.home = home;
-        totalCustomers++;
     }
 
     public String getName()

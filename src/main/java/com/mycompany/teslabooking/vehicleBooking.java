@@ -1,18 +1,18 @@
 package com.mycompany.teslabooking;
+import java.util.Date;
 
-
-public class vehicleBooking
+public class vehicleBooking implements IAverage
 {
     private String passengerID;
     private static int totalBookings;
     private int bookingnumber;
-    private String bookingDT;
+    private Date bookingDT;
     private Location startLocation;
     private Location endLocation;
     private String vehicleBooked;
     private double bookingCost;
 
-    public vehicleBooking(String passengerID, String bookingDT, Location startLocation, Location endLocation, String vehicleBooked, double bookingCost)
+    public vehicleBooking(String passengerID, Date bookingDT, Location startLocation, Location endLocation, String vehicleBooked, double bookingCost)
     {
         totalBookings++;
         this.passengerID = passengerID;
@@ -36,7 +36,7 @@ public class vehicleBooking
         return bookingnumber;
     }
 
-    public String getBookingDT() {
+    public Date getBookingDT() {
         return bookingDT;
     }
 
@@ -90,7 +90,7 @@ public class vehicleBooking
         this.bookingnumber = bookingnumber;
     }
 
-    public void setBookingDT(String bookingDT)
+    public void setBookingDT(Date bookingDT)
     {
         this.bookingDT = bookingDT;
     }
@@ -113,6 +113,16 @@ public class vehicleBooking
     public void setBookingCost(double bookingCost)
     {
         this.bookingCost = bookingCost;
+    }
+
+    @Override
+    public double getLength()
+    {
+        double over = this.getEndlattitude() - this.getStartlattitude();
+        double up = this.getEndLongitude() - this.getStartLongitude();
+        double holder = (over * over) + (up*up);
+        double answer = Math.sqrt(holder);
+        return answer;
     }
 
     @Override

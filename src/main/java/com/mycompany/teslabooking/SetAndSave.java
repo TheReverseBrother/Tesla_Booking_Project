@@ -2,11 +2,13 @@ package com.mycompany.teslabooking;
 
 
 import java.io.*;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
 
 public class SetAndSave
 {
@@ -214,7 +216,7 @@ public class SetAndSave
                 String line = input.nextLine();
                 String[] Info = line.split(",");
                 String psgID = Info[0].trim();
-                String date = Info[1].trim();
+                Date date = new SimpleDateFormat("dd/MM/yyyy").parse(Info[1].trim());;
                 double slongitude  = Double.parseDouble(Info[2].trim());
                 double slattitude = Double.parseDouble(Info[3].trim());
                 double elongitude  = Double.parseDouble(Info[4].trim());
@@ -234,6 +236,8 @@ public class SetAndSave
 
     public static void saveBookings(ArrayList BookingList)
     {
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        DecimalFormat NumF = new DecimalFormat("#.00");
         ArrayList<vehicleBooking> write = BookingList;
         String PassengerID,date,slongitude,slattitude,elongitude,elattitude, registration, cost;
 
@@ -242,13 +246,13 @@ public class SetAndSave
             for(int i = 0; i < write.size(); i++)
             {
                 PassengerID = ""+ write.get(i).getPassengerID();
-                date = "" +write.get(i).getBookingDT();
+                date = df.format(write.get(i).getBookingDT());
                 slongitude = "" +write.get(i).getStartLongitude();
                 slattitude = "" +write.get(i).getStartlattitude();
                 elongitude = "" +write.get(i).getEndLongitude();
                 elattitude = "" +write.get(i).getEndlattitude();
                 registration = "" +write.get(i).getVehicleBooked();
-                cost = "" +write.get(i).getBookingCost();
+                cost = "" + NumF.format(write.get(i).getBookingCost());
                 bookFile.write(PassengerID+","+date+","+slongitude+","+slattitude+","+elongitude+","+elattitude+","+registration+","+cost+"\n");
             }
         }

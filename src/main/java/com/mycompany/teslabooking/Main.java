@@ -7,6 +7,9 @@ package com.mycompany.teslabooking;
 
 import java.io.*;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
@@ -30,8 +33,9 @@ public class Main{
             running = Menus.mainMenu();
         }
 //        DisplaySettings.displayAllVehicles(VehicleList);
+//        displayBookingID();
 
-
+//        BookingSelector();
 
         SetAndSave.saveCosts();
         SetAndSave.saveVehicles(VehicleList);
@@ -132,4 +136,68 @@ public class Main{
         }
         return type;
     }
+    public static void displayBookingID()
+    {
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        String ID,date,selector;
+
+        String format = "|%1$-15s|%2$-20s|%3$-25s|\n";
+        System.out.println("_____________________________________________________________________________________________________________________________________");
+        System.out.println("|_________________________________________________________" +
+                "____________________________________________________________________________|");
+        System.out.format(format,"Number","PassengerID","Date");
+        for(int i = 0; i <Bookings.size();i++)
+        {
+            int j = i +1;
+            selector = "("+j+")";
+            ID = "" +Bookings.get(i).getPassengerID();
+            date = "" +df.format(Bookings.get(i).getBookingDT());
+            System.out.format(format, selector, ID, date);
+        }
+        System.out.println("|_____________________________________________________________________________________________________________________________________|");
+
+    }
+    public static int BookingSelector()
+    {
+        Scanner sc = new Scanner(System.in);
+        boolean running = true;
+        int input = 0;
+        int bookingID = 0;
+        while(running)
+        {
+            displayBookingID();
+            System.out.println("Please Select Booking:");
+            input = sc.nextInt();
+            if( input <= Bookings.size() && input > 0)
+            {
+//                bookingID = Bookings.get(input - 1).getBookingnumber();
+                bookingID = input - 1;
+                running = false;
+            }
+            else{
+                System.out.println("Please Enter valid Number");
+            }
+        }
+        return bookingID;
+    }
+
+
+    public static double ShowAverage()
+    {
+        DecimalFormat NumF = new DecimalFormat("#.00");
+        IAverage[] bookings = new IAverage[Bookings.size()];
+        bookings = Bookings.toArray(bookings);
+        return AverageLength(bookings);
+    }
+    public static double AverageLength (IAverage[] objects)
+    {
+        double sum = 0;
+        for(IAverage obj : objects)
+        {
+            sum = sum + obj.getLength();
+        }
+        double total = sum / objects.length;
+        return total;
+    }
+
 }

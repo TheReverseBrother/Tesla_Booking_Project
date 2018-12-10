@@ -1,10 +1,14 @@
 package com.mycompany.teslabooking;
 
 import java.text.Format;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class addClass
 {
     static DecimalFormat df = new DecimalFormat("#.00");
@@ -12,7 +16,7 @@ public class addClass
     {
         boolean check = true;
         boolean running = true;
-        int checker = 0;
+
         String name = "",email = "",phone = "";
         double longitude = 0;
         double lattitude = 0;
@@ -22,11 +26,13 @@ public class addClass
             System.out.println("Please Enter Your Name");
             name = sc.nextLine();
             System.out.println("Please Enter Your Email");
-            email = sc.next();
+            email = sc.nextLine();
             while (check) {
+                int checker = 0;
                 System.out.println("Please Enter Your PhoneNumber");
-                phone = sc.next();
+                phone = sc.nextLine();
                 for (int i = 0; i < phone.length(); i++) {
+                    phone.trim();
                     if (Character.isLetter(phone.charAt(i))) {
                         checker++;
                     }
@@ -64,14 +70,15 @@ public class addClass
         Scanner sc = new Scanner(System.in);
         String input;
         double cost =0,startlattitude =0,startlongitude =0,endlattitude =0,endlongitude =0;
-        String vehicleReg = "",date = "";
+        String vehicleReg = "";
+        Date date1 = null;
         boolean running = true;
         while (running)
         {
             System.out.println("Please Choose VehicleType");
             vehicleReg = VehicleType(Vehicles);
             System.out.println("Please Enter Booking Date");
-            date = sc.next();
+            date1 = dateChecker();
             System.out.println("Please Enter Start Location Longitude");
             startlongitude = doubleChecker();
             System.out.println("Please Enter Start Location Lattitude");
@@ -81,12 +88,13 @@ public class addClass
             System.out.println("Please Enter End Location Lattitude");
             endlattitude = doubleChecker();
             cost = bookingCost(Vehicles,vehicleReg,startlattitude,startlongitude,endlattitude,endlongitude);
-            System.out.println("Cost of This Journey is: " +cost+".");
+            String cost1 = df.format(cost);
+            System.out.println("Cost of This Journey is: " +cost1+".");
 
                 running = false;
 
         }
-        vehicleBooking newBooking = new vehicleBooking(passengerID,date,new
+        vehicleBooking newBooking = new vehicleBooking(passengerID,date1,new
                 Location(startlongitude,startlattitude),new Location(endlongitude,endlattitude),vehicleReg,cost);
         System.out.println("Booking successfully added");
         System.out.println();
@@ -271,6 +279,32 @@ public class addClass
 
         }
         return number;
+    }
+    public static Date dateChecker()
+    {
+        Scanner sc = new Scanner(System.in);
+        boolean check = true;
+        Date gg = null;
+        String sDate1="31/12/1998";
+        while (check)
+        {
+            try
+            {
+                Date number = new SimpleDateFormat("dd/MM/yyyy").parse(sc.next());
+                check = false;
+                return number;
+            }
+            catch(NumberFormatException ignore)
+            {
+                System.out.println("Please Enter Valid Number");
+            }
+            catch(ParseException e)
+            {
+                System.out.println("Please Enter Valid Number");
+            }
+
+        }
+        return gg;
     }
 
     public static Vehicle addVehicle(ArrayList<Vehicle> VehicleList)
