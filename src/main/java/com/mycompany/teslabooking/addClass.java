@@ -42,9 +42,9 @@ public class addClass
                 }
             }
             System.out.println("Please Enter Your Home Lattitude");
-            lattitude = sc.nextDouble();
+            lattitude = doubleChecker();
             System.out.println("Please Enter Your Home Longitude");
-            longitude = sc.nextDouble();
+            longitude = doubleChecker();
             running = passengerChecker(passengerList, email);
         }
         Passenger ToBeAdded = new Passenger(name,email,phone,new Location(longitude,lattitude));

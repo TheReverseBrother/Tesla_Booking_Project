@@ -5,15 +5,13 @@
  */
 package com.mycompany.teslabooking;
 
-import java.io.*;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.Formattable;
+
 
 public class Main{
 
@@ -75,7 +73,7 @@ public class Main{
         {
             PassengerSelector(PassengerList);
             System.out.println("Please Select Passenger:");
-             input = sc.nextInt();
+             input = integerChecker();
             if( input <= PassengerList.size() && input > 0)
             {
                 psgID = PassengerList.get(input - 1).getPassengerID();
@@ -167,7 +165,7 @@ public class Main{
         {
             displayBookingID();
             System.out.println("Please Select Booking:");
-            input = sc.nextInt();
+            input = integerChecker();
             if( input <= Bookings.size() && input > 0)
             {
 //                bookingID = Bookings.get(input - 1).getBookingnumber();
@@ -198,6 +196,26 @@ public class Main{
         }
         double total = sum / objects.length;
         return total;
+    }
+
+    public static int integerChecker()
+    {
+        Scanner sc = new Scanner(System.in);
+        boolean check = true;
+        int number = 0;
+        while (check)
+        {
+            try
+            {
+                number = Integer.parseInt(sc.next());
+                check = false;
+            }
+            catch(NumberFormatException ignore)
+            {
+                System.out.println("Please Enter Valid Number");
+            }
+        }
+        return number;
     }
 
 }

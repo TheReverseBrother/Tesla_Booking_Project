@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DisplaySettings
 {
@@ -11,11 +12,12 @@ public class DisplaySettings
     {
         DecimalFormat NumF = new DecimalFormat("#.00");
         String passengerID,bookingnumber,bookingDT,startLocation,endLocation,vehicleBooked,cost;
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String format = "|%1$-15s|%2$-25s|%3$-25s|%4$-20s|%5$-20s|%6$-20s|%7$-10s|\n";
         System.out.println("_________________________________________________________________________________________________________________________________________________________________");
         System.out.println("|_______________________________________________________________________________________________________________________________________________________________|");
         System.out.format(format,"PassengerID","Booking Number","Booking Date","Start Location","End Location","Vehicle Booked","Cost");
+        Collections.sort(Bookings);
         for(int i = 0; i <Bookings.size();i++)
         {
             passengerID = Bookings.get(i).getPassengerID();

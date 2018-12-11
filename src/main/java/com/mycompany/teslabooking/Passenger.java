@@ -18,6 +18,15 @@ public class Passenger
         this.home = home;
     }
 
+    public Passenger(String name, String passengerID, String email, String phoneNumber, Location home)
+    {
+        this.name = name;
+        this.passengerID = passengerID;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.home = home;
+    }
+
     public String getName()
     {
         return name;

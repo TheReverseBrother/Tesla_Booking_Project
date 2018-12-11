@@ -1,5 +1,6 @@
 package com.mycompany.teslabooking;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //Main class was getting very cluttered with large amount of menus so i put them all here
@@ -23,7 +24,7 @@ public class Menus
         System.out.println("(1):View All Passengers");
         System.out.println("(2):Add Passengers");
         System.out.println("(3):Remove Passenger");
-        System.out.println("(4):Edit Booking");
+        System.out.println("(4):Edit Passenger");
         System.out.println("(5): Quit");
         passengerMenuSelector();
     }
@@ -53,7 +54,7 @@ public class Menus
     public static boolean mainMenuSelector()
     {
 
-        int input = menuChecker();
+        int input = MainmenuChecker();
         input = input - 1;
         Mainmenu options = Mainmenu.values()[input];
         switch(options)
@@ -171,7 +172,7 @@ public class Menus
         int input = 0;
         while(running)
         {
-            input = sc.nextInt();
+            input = integerChecker();
             if(input == 1 || input == 2 || input == 3 || input ==4|| input == 5)
             {
                 running = false;
@@ -183,6 +184,25 @@ public class Menus
         }
         return input;
     }
+    public static int MainmenuChecker()
+    {
+        boolean running = true;
+        Scanner sc = new Scanner(System.in);
+        int input = 0;
+        while(running)
+        {
+            input = integerChecker();
+            if(input == 1 || input == 2 || input == 3 || input ==4)
+            {
+                running = false;
+            }
+            else
+            {
+                System.out.println("Please Enter Valid Choice");
+            }
+        }
+        return input;
+    }
     public static int vehicleChecker()
     {
         boolean running = true;
@@ -190,7 +210,7 @@ public class Menus
         int input = 0;
         while(running)
         {
-            input = sc.nextInt();
+            input = integerChecker();
             if(input == 1 || input == 2 || input == 3)
             {
                 running = false;
@@ -201,5 +221,25 @@ public class Menus
             }
         }
         return input;
+    }
+    public static int integerChecker()
+    {
+        Scanner sc = new Scanner(System.in);
+        boolean check = true;
+        int number = 0;
+        while (check)
+        {
+            try
+            {
+                number = Integer.parseInt(sc.next());
+                check = false;
+            }
+            catch(NumberFormatException ignore)
+            {
+                System.out.println("Please Enter Valid Number");
+            }
+
+        }
+        return number;
     }
 }

@@ -12,7 +12,9 @@ import java.text.DecimalFormat;
 
 public class SetAndSave
 {
-
+    /**
+     * This Method sets the costs the total number of bookings ever made and the total number of passengers ever entered
+     */
     public static void setCosts()
     {
         try{
@@ -32,6 +34,8 @@ public class SetAndSave
                 Van.setCostpermileVan(input.nextDouble());// read next intege
                 FourbyFour.setCostpermileFourbyFour(input.nextDouble());
                 Truck.setCostpermileTruck(input.nextDouble());
+                vehicleBooking.setTotalBookings(input.nextInt());
+                Passenger.setTotalCustomers(input.nextInt());
                 //System.out.println(number);
             }
         }
@@ -41,14 +45,20 @@ public class SetAndSave
         }
 
     }
+
+    /**
+     * This
+     */
     public static void saveCosts()
     {
         try(FileWriter costFile = new FileWriter("carCost.txt"))
         {
-            costFile.write("2.00" + "\n");
-            costFile.write("2.00" + "\n");
-            costFile.write("2.00"+ "\n");
-            costFile.write("2.00"+ "\n");
+            costFile.write(""+Car.getCostpermileCar() + "\n");
+            costFile.write("" +Van.getCostpermileVan()+ "\n");
+            costFile.write(""+FourbyFour.getCostpermileFourbyFour()+ "\n");
+            costFile.write(""+Truck.getCostpermileTruck() +"\n");
+            costFile.write(""+vehicleBooking.getTotalBookings() +"\n");
+            costFile.write(""+Passenger.getTotalCustomers() +"\n");
         }
         catch (IOException e)
         {
@@ -165,12 +175,13 @@ public class SetAndSave
             {
                 String line = input.nextLine();
                 String[] Info = line.split(",");
-                String name = Info[0].trim();
-                String email = Info[1].trim();
-                String phone = Info[2].trim();
-                double lattitude = Double.parseDouble(Info[3].trim());
-                double longitude  = Double.parseDouble(Info[4].trim());
-                PassengerList.add(new Passenger(name,email,phone,new Location(lattitude,longitude)));
+                String ID = Info[0].trim();
+                String name = Info[1].trim();
+                String email = Info[2].trim();
+                String phone = Info[3].trim();
+                double lattitude = Double.parseDouble(Info[4].trim());
+                double longitude  = Double.parseDouble(Info[5].trim());
+                PassengerList.add(new Passenger(name,ID,email,phone,new Location(lattitude,longitude)));
             }
             input.close();
         }
@@ -184,18 +195,19 @@ public class SetAndSave
     public static void savePassengers(ArrayList PassengerList)
     {
         ArrayList<Passenger> write = PassengerList;
-        String name,email,phone,longitude,latitude;
+        String name,email,phone,longitude,latitude,ID;
 
         try(FileWriter passengerFile = new FileWriter("passengers.txt"))
         {
             for(int i = 0; i < write.size(); i++)
             {
+                ID = ""+ write.get(i).getPassengerID();
                 name = ""+ write.get(i).getName();
                 email = "" +write.get(i).getEmail();
                 phone = "" +write.get(i).getPhoneNumber();
                 longitude = "" +write.get(i).getHomeLongitude();;
                 latitude = "" +write.get(i).getHomeLatitude();;
-                    passengerFile.write(name+","+email+","+phone+","+longitude+","+latitude+"\n");
+                    passengerFile.write(ID+","+name+","+email+","+phone+","+longitude+","+latitude+"\n");
             }
         }
         catch (IOException e)
@@ -216,36 +228,38 @@ public class SetAndSave
                 String line = input.nextLine();
                 String[] Info = line.split(",");
                 String psgID = Info[0].trim();
-                Date date = new SimpleDateFormat("dd/MM/yyyy").parse(Info[1].trim());;
-                double slongitude  = Double.parseDouble(Info[2].trim());
-                double slattitude = Double.parseDouble(Info[3].trim());
-                double elongitude  = Double.parseDouble(Info[4].trim());
-                double elattitude = Double.parseDouble(Info[5].trim());
-                String registration = Info[6].trim();
-                double cost = Double.parseDouble(Info[7].trim());
-                BookingList.add(new vehicleBooking(psgID,date,new Location(slongitude,slattitude),new Location(elongitude,elattitude),registration, cost));
+                int bookID = Integer.parseInt(Info[1].trim());
+                Date date = new SimpleDateFormat("dd/MM/yyyy").parse(Info[2].trim());;
+                double slongitude  = Double.parseDouble(Info[3].trim());
+                double slattitude = Double.parseDouble(Info[4].trim());
+                double elongitude  = Double.parseDouble(Info[5].trim());
+                double elattitude = Double.parseDouble(Info[6].trim());
+                String registration = Info[7].trim();
+                double cost = Double.parseDouble(Info[8].trim());
+                BookingList.add(new vehicleBooking(psgID,bookID,date,new Location(slongitude,slattitude),new Location(elongitude,elattitude),registration, cost));
             }
             input.close();
         }
         catch(Exception e)
         {
-            System.out.println("Error Loading List");
+            System.out.println("Error Booking List");
         }
         return BookingList;
     }
 
     public static void saveBookings(ArrayList BookingList)
     {
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         DecimalFormat NumF = new DecimalFormat("#.00");
         ArrayList<vehicleBooking> write = BookingList;
-        String PassengerID,date,slongitude,slattitude,elongitude,elattitude, registration, cost;
+        String PassengerID,date,slongitude,slattitude,elongitude,elattitude, registration, cost,bookID;
 
         try(FileWriter bookFile = new FileWriter("bookings.txt"))
         {
             for(int i = 0; i < write.size(); i++)
             {
                 PassengerID = ""+ write.get(i).getPassengerID();
+                bookID = ""+ write.get(i).getBookingnumber();
                 date = df.format(write.get(i).getBookingDT());
                 slongitude = "" +write.get(i).getStartLongitude();
                 slattitude = "" +write.get(i).getStartlattitude();
@@ -253,12 +267,13 @@ public class SetAndSave
                 elattitude = "" +write.get(i).getEndlattitude();
                 registration = "" +write.get(i).getVehicleBooked();
                 cost = "" + NumF.format(write.get(i).getBookingCost());
-                bookFile.write(PassengerID+","+date+","+slongitude+","+slattitude+","+elongitude+","+elattitude+","+registration+","+cost+"\n");
+                bookFile.write(PassengerID+","+bookID+","+date+","+slongitude+","+slattitude+","+elongitude+","+elattitude+","+registration+","+cost+"\n");
             }
         }
         catch (IOException e)
         {
             e.printStackTrace();
+            System.out.println("Error Saving Bookings");
         }
     }
 }

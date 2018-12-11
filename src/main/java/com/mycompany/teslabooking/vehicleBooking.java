@@ -1,7 +1,7 @@
 package com.mycompany.teslabooking;
 import java.util.Date;
 
-public class vehicleBooking implements IAverage
+public class vehicleBooking implements IAverage, Comparable<vehicleBooking>
 {
     private String passengerID;
     private static int totalBookings;
@@ -17,6 +17,17 @@ public class vehicleBooking implements IAverage
         totalBookings++;
         this.passengerID = passengerID;
         this.bookingnumber = totalBookings;
+        this.bookingDT = bookingDT;
+        this.startLocation = startLocation;
+        this.endLocation = endLocation;
+        this.vehicleBooked = vehicleBooked;
+        this.bookingCost = bookingCost;
+    }
+
+    public vehicleBooking(String passengerID, int bookingnumber, Date bookingDT, Location startLocation, Location endLocation, String vehicleBooked, double bookingCost)
+    {
+        this.passengerID = passengerID;
+        this.bookingnumber = bookingnumber;
         this.bookingDT = bookingDT;
         this.startLocation = startLocation;
         this.endLocation = endLocation;
@@ -114,6 +125,13 @@ public class vehicleBooking implements IAverage
     {
         this.bookingCost = bookingCost;
     }
+
+    @Override
+    public int compareTo(vehicleBooking o)
+    {
+        return getBookingDT().compareTo(o.getBookingDT());
+    }
+
 
     @Override
     public double getLength()
