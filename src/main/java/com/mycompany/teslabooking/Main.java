@@ -228,6 +228,7 @@ public class Main{
     }
 
     /**
+     *
      * Checks for valid int and returns it
      * @return
      */

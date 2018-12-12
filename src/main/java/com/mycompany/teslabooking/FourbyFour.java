@@ -27,4 +27,5 @@ public class FourbyFour extends Vehicle
     {
         FourbyFour.costpermileFourbyFour = costpermileFourbyFour;
     }
+
 }

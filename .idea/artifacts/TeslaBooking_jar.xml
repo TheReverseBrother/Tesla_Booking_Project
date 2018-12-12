@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TeslaBooking:jar">
+    <output-path>$PROJECT_DIR$/classes/artifacts/TeslaBooking_jar</output-path>
+    <root id="archive" name="TeslaBooking.jar">
+      <element id="module-output" name="TeslaBooking" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/javax/activation/activation/1.1/activation-1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/javax/mail/mail/1.4.7/mail-1.4.7.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

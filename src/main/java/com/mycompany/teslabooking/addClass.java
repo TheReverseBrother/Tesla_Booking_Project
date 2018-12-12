@@ -90,11 +90,12 @@ public class addClass
         String vehicleReg = "";
         Date date1 = null;
         boolean running = true;
+        vehicleBooking newBooking = null;
         while (running)
         {
             System.out.println("Please Choose VehicleType");
             vehicleReg = VehicleType(Vehicles);
-            System.out.println("Please Enter Booking Date");
+            System.out.println("Please Enter Booking Date DD/MM/YYYY");
             date1 = dateChecker();
             System.out.println("Please Enter Start Location Longitude");
             startlongitude = doubleChecker();
@@ -108,13 +109,31 @@ public class addClass
             String cost1 = df.format(cost);
             System.out.println("Cost of This Journey is: " +cost1+".");
 
+
+            newBooking = new vehicleBooking(passengerID,date1,new Location(startlongitude,startlattitude),new Location(endlongitude,endlattitude),vehicleReg,cost);
+            if(Main.Bookings.contains(newBooking))
+            {
+                running = true;
+                System.out.println("Booking Already Made Please Try Again");
+            }
+            else
+            {
                 running = false;
+            }
 
         }
-        vehicleBooking newBooking = new vehicleBooking(passengerID,date1,new
-                Location(startlongitude,startlattitude),new Location(endlongitude,endlattitude),vehicleReg,cost);
+        String email = "";
+//        for(int i = 0 ;i<Main.PassengerList.size();i++)
+//        {
+//            if(passengerID.equals(Main.PassengerList.get(i).getPassengerID()))
+//            {
+//                email = Main.PassengerList.get(i).getEmail();
+//            }
+//        }
+//        Email.EmailPrep(email);
+        System.out.println("");
         System.out.println("Booking successfully added");
-        System.out.println();
+        System.out.println("");
         return newBooking;
     }
 
@@ -343,11 +362,11 @@ public class addClass
             }
             catch(NumberFormatException ignore)
             {
-                System.out.println("Please Enter Valid Number");
+                System.out.println("Please Enter Valid Date DD/MM/YYYY");
             }
             catch(ParseException e)
             {
-                System.out.println("Please Enter Valid Number");
+                System.out.println("Please Enter Valid Date DD/MM/YYYY");
             }
 
         }
@@ -407,7 +426,9 @@ public class addClass
         }
 
         Car wCar = new Car(make,model,milesperkwh,seats,registration,mileage,new Location(longitude,latitude),true);
+        System.out.println("");
         System.out.println("Vehicle successfully added");
+        System.out.println("");
         return  wCar;
     }
 

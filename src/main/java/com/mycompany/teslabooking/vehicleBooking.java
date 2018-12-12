@@ -1,5 +1,6 @@
 package com.mycompany.teslabooking;
 import java.util.Date;
+import java.util.Objects;
 
 public class vehicleBooking implements IAverage, Comparable<vehicleBooking>
 {
@@ -132,6 +133,26 @@ public class vehicleBooking implements IAverage, Comparable<vehicleBooking>
         return getBookingDT().compareTo(o.getBookingDT());
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        vehicleBooking that = (vehicleBooking) o;
+        return bookingnumber == that.bookingnumber &&
+                Double.compare(that.bookingCost, bookingCost) == 0 &&
+                Objects.equals(passengerID, that.passengerID) &&
+                Objects.equals(bookingDT, that.bookingDT) &&
+                Objects.equals(startLocation, that.startLocation) &&
+                Objects.equals(endLocation, that.endLocation) &&
+                Objects.equals(vehicleBooked, that.vehicleBooked);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(passengerID, bookingnumber, bookingDT, startLocation, endLocation, vehicleBooked, bookingCost);
+    }
 
     @Override
     public double getLength()

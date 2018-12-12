@@ -31,6 +31,4 @@ public class Truck extends Vehicle
     public static void setCostpermileTruck(double costpermileTruck) {
         Truck.costpermileTruck = costpermileTruck;
     }
-    
-    
 }
