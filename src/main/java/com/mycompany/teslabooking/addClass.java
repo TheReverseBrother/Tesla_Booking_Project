@@ -1,9 +1,7 @@
 package com.mycompany.teslabooking;
 
-import java.text.Format;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -12,6 +10,13 @@ import java.util.Date;
 public class addClass
 {
     static DecimalFormat df = new DecimalFormat("#.00");
+
+    /**
+     * This takes in the passengerlist and returns brand new passenger
+     * making sure that an email entered has not been in use.
+     * @param passengerList
+     * @return
+     */
     public static Passenger addPassenger(ArrayList<Passenger> passengerList)
     {
         boolean check = true;
@@ -52,6 +57,12 @@ public class addClass
         return ToBeAdded;
     }
 
+    /**
+     * Checks for a duplicate email
+     * @param PassengerList
+     * @param email
+     * @return
+     */
     public static boolean passengerChecker(ArrayList<Passenger> PassengerList, String email)
     {
         for(int i =0;i<PassengerList.size();i++)
@@ -65,6 +76,12 @@ public class addClass
         return false;
     }
 
+    /**
+     * Returns a vehicle booking to be added to the list
+     * @param Vehicles
+     * @param passengerID
+     * @return
+     */
     public static vehicleBooking addBooking(ArrayList<Vehicle> Vehicles, String passengerID)
     {
         Scanner sc = new Scanner(System.in);
@@ -101,6 +118,17 @@ public class addClass
         return newBooking;
     }
 
+
+    /**
+     * Gets the booking cost of trip
+     * @param Vehicles
+     * @param vehicleReg
+     * @param startLat
+     * @param startLong
+     * @param endlat
+     * @param endLong
+     * @return
+     */
     public static double bookingCost( ArrayList<Vehicle> Vehicles,String vehicleReg, double startLat, double startLong, double endlat, double endLong)
     {
         double lattitude= 0,longitude = 0,firstValue,secondValue,thirdvalue,finalvalue,over,up,cost = 0,holder;
@@ -132,8 +160,9 @@ public class addClass
     }
 
 
-
-
+    /**
+     * Allows you to select type of vehicle wanted
+     */
     enum Type {Car,FourByFour,Truck,Van}
     public static String VehicleType(ArrayList<Vehicle> vehicleList)
     {
@@ -159,6 +188,7 @@ public class addClass
                                 if(vehicleList.get(i).isInDepot() == true)
                                 {
                                     reg = vehicleList.get(i).getRegistration();
+                                    vehicleList.get(i).setInDepot(false);
                                     running = false;
                                 }
                             }
@@ -168,6 +198,7 @@ public class addClass
                         for (int i = 0; i < vehicleList.size(); i++) {
                             if (vehicleList.get(i).getType() == "4x4" && vehicleList.get(i).isInDepot() == true) {
                                 reg = vehicleList.get(i).getRegistration();
+                                vehicleList.get(i).setInDepot(false);
                                 running = false;
                             }
                         }
@@ -176,6 +207,7 @@ public class addClass
                         for (int i = 0; i < vehicleList.size(); i++) {
                             if (vehicleList.get(i).getType() == "Truck" && vehicleList.get(i).isInDepot() == true) {
                                 reg = vehicleList.get(i).getRegistration();
+                                vehicleList.get(i).setInDepot(false);
                                 running = false;
                             }
                         }
@@ -184,6 +216,7 @@ public class addClass
                         for (int i = 0; i < vehicleList.size(); i++) {
                             if (vehicleList.get(i).getType() == "Van" && vehicleList.get(i).isInDepot() == true) {
                                 reg = vehicleList.get(i).getRegistration();
+                                vehicleList.get(i).setInDepot(false);
                                 running = false;
                             }
                         }
@@ -239,6 +272,11 @@ public class addClass
 //            }
 //            return number;
 //  }
+
+    /**
+     * Checks for double input
+     * @return
+     */
     public static double doubleChecker()
     {
         Scanner sc = new Scanner(System.in);
@@ -260,6 +298,10 @@ public class addClass
         return number;
     }
 
+    /**
+     * Checks for integer input
+     * @return
+     */
     public static int integerChecker()
     {
         Scanner sc = new Scanner(System.in);
@@ -280,6 +322,11 @@ public class addClass
         }
         return number;
     }
+
+    /**
+     * Checks for date input
+     * @return
+     */
     public static Date dateChecker()
     {
         Scanner sc = new Scanner(System.in);
@@ -307,6 +354,11 @@ public class addClass
         return gg;
     }
 
+    /**
+     * Allows you to add a vehicle and input new
+     * @param VehicleList
+     * @return
+     */
     public static Vehicle addVehicle(ArrayList<Vehicle> VehicleList)
     {
         Scanner sc = new Scanner(System.in);
@@ -359,6 +411,10 @@ public class addClass
         return  wCar;
     }
 
+    /**
+     * Selects a vehicle for booking to use returns vehicle reg.
+     * @return
+     */
     public static String VehicelSelect()
     {
         Scanner keyboard = new Scanner(System.in);
@@ -401,6 +457,12 @@ public class addClass
         }
         return type;
     }
+
+    /**
+     * Used to check that a reg has not been entered.
+     * @param Vehicles
+     * @return
+     */
     public static String regChecker(ArrayList<Vehicle> Vehicles)
     {
         Scanner sc = new Scanner(System.in);

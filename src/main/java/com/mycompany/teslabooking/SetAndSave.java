@@ -47,7 +47,7 @@ public class SetAndSave
     }
 
     /**
-     * This
+     * This method saves the cost of each vehicle type and saves total customers and total bookings made
      */
     public static void saveCosts()
     {
@@ -126,6 +126,11 @@ public class SetAndSave
         return VehicleList;
     }
 
+    /**
+     * Saves the Vehicle ArrayList
+     * @param VehicleList
+     */
+
     public static void saveVehicles(ArrayList VehicleList)
     {
         ArrayList<Vehicle> write = VehicleList;
@@ -165,6 +170,10 @@ public class SetAndSave
         }
     }
 
+    /**
+     * Creates A ArrayList of Passengers from the txt document.
+     * @return
+     */
     public static ArrayList<Passenger> PassengerList()
     {
         ArrayList<Passenger> PassengerList = new ArrayList<>();
@@ -192,6 +201,10 @@ public class SetAndSave
         return PassengerList;
     }
 
+    /**
+     * Saves the arrayList of Passengers
+     * @param PassengerList
+     */
     public static void savePassengers(ArrayList PassengerList)
     {
         ArrayList<Passenger> write = PassengerList;
@@ -217,6 +230,10 @@ public class SetAndSave
         }
     }
 
+    /**
+     * Creates and returns an ArrayList of VehicleBookings from the txt document
+     * @return
+     */
     public static ArrayList<vehicleBooking> BookingList()
     {
         ArrayList<vehicleBooking> BookingList = new ArrayList<>();
@@ -247,6 +264,10 @@ public class SetAndSave
         return BookingList;
     }
 
+    /**
+     * Saves the arraylist of bookings to a text document
+     * @param BookingList
+     */
     public static void saveBookings(ArrayList BookingList)
     {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");

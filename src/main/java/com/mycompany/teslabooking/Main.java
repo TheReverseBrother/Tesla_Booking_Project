@@ -27,13 +27,12 @@ public class Main{
     public static void main(String[] args)
     {
         boolean running = true;
+        System.out.println("=====================");
+        System.out.println("==Welcome To Tesla===");
+        System.out.println("=====================");
         while(running) {
             running = Menus.mainMenu();
         }
-//        DisplaySettings.displayAllVehicles(VehicleList);
-//        displayBookingID();
-
-//        BookingSelector();
 
         SetAndSave.saveCosts();
         SetAndSave.saveVehicles(VehicleList);
@@ -42,7 +41,10 @@ public class Main{
 
     }
 
-
+    /**
+     * Prints passengers with option to choose them
+     * @param PassengerList
+     */
     public static void PassengerSelector(ArrayList<Passenger> PassengerList)
     {
         String name,email,selector;
@@ -63,6 +65,10 @@ public class Main{
         System.out.println("|_____________________________________________________________________________________________________________________________________|");
     }
 
+    /**
+     * Allows user to select current passenger
+     * @return
+     */
     public static String selectCurrentPassenger()
     {
         Scanner sc = new Scanner(System.in);
@@ -87,6 +93,10 @@ public class Main{
     }
     enum Type {Car,FourByFour,Truck,Van,All}
 
+    /**
+     * Allows user to select type of vehicle they want printed
+     * @return
+     */
     public static String VehicleSelect()
     {
         Scanner keyboard = new Scanner(System.in);
@@ -134,6 +144,10 @@ public class Main{
         }
         return type;
     }
+
+    /**
+     * Displays Bookings with option to select
+     */
     public static void displayBookingID()
     {
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
@@ -155,6 +169,11 @@ public class Main{
         System.out.println("|_____________________________________________________________________________________________________________________________________|");
 
     }
+
+    /**
+     * Allows user to select bookings
+     * @return
+     */
     public static int BookingSelector()
     {
         Scanner sc = new Scanner(System.in);
@@ -179,7 +198,10 @@ public class Main{
         return bookingID;
     }
 
-
+    /**
+     * I couldnt figure out how to pass IAverage[] objects into Average length without doing this
+     * @return
+     */
     public static double ShowAverage()
     {
         DecimalFormat NumF = new DecimalFormat("#.00");
@@ -187,8 +209,15 @@ public class Main{
         bookings = Bookings.toArray(bookings);
         return AverageLength(bookings);
     }
+
+    /**
+     * Returns average length of journeys
+     * @param objects
+     * @return
+     */
     public static double AverageLength (IAverage[] objects)
     {
+
         double sum = 0;
         for(IAverage obj : objects)
         {
@@ -198,6 +227,10 @@ public class Main{
         return total;
     }
 
+    /**
+     * Checks for valid int and returns it
+     * @return
+     */
     public static int integerChecker()
     {
         Scanner sc = new Scanner(System.in);

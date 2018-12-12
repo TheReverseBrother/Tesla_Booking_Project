@@ -1,35 +1,35 @@
 Car,Tesla,Model S,150,5,161-D-3458,9000.0,60.08,45.98,true
-Car,Tesla,Model S,150,5,161-MN-0123,10000.0,60.08,45.98,false
+Car,Tesla,Model S,150,5,161-MN-0123,10000.0,60.08,45.98,true
 Car,Tesla,Model S,150,5,161-D-4987,10000.0,60.08,45.98,true
-Car,Tesla,Model S,150,5,161-MN-9856,10000.0,60.08,45.98,false
-Car,Tesla,Model S,150,5,161-D-5789,10000.0,60.08,45.98,false
-Van,Ford,Transit,100,3,181-CW-2014,10000.0,60.08,45.98,false,10.0
-Van,Ford,Transit,100,3,181-LD-3458,9000.0,60.08,45.98,false,10.0
-Van,Ford,Transit,100,3,181-CW-0123,10000.0,60.08,45.98,false,10.0
-Van,Ford,Transit,100,3,181-DL-4987,10000.0,60.08,45.98,false,10.0
-Van,Ford,Transit,100,3,151-DL-9856,10000.0,60.08,45.98,false,10.0
-Van,Ford,Transit,100,3,151-D-5789,10000.0,60.08,45.98,false,10.0
-Van,Ford,Transit,100,3,151-CE-9856,10000.0,60.08,45.98,false,10.0
-Van,Ford,Transit,100,3,151-D-5789,10000.0,60.08,45.98,false,10.0
-Van,Ford,Transit,100,3,181-L-5742,10000.0,60.08,45.98,false,10.0
-Van,Ford,Transit,100,3,181-D-8796,9000.0,60.08,45.98,false,10.0
-4x4,Tesla,Model X,100,5,181-CW-2014,10000.0,60.08,45.98,false
-4x4,Tesla,Model X,100,5,181-LD-3458,9000.0,60.08,45.98,false
-4x4,Tesla,Model X,100,5,181-CW-0123,10000.0,60.08,45.98,false
-4x4,Tesla,Model X,100,5,181-DL-4987,10000.0,60.08,45.98,false
-4x4,Tesla,Model X,100,5,151-DL-9856,10000.0,60.08,45.98,false
-4x4,Tesla,Model X,100,5,151-D-5789,10000.0,60.08,45.98,false
-4x4,Tesla,Model X,100,5,151-CE-9856,10000.0,60.08,45.98,false
-4x4,Tesla,Model X,100,5,151-D-5789,10000.0,60.08,45.98,false
-4x4,Tesla,Model X,100,5,181-L-5742,10000.0,60.08,45.98,false
-4x4,Tesla,Model X,100,5,181-D-8796,9000.0,60.08,45.98,false
-Truck,Tesla,Semi,100,3,182-D-1275,10000.0,60.08,45.98,false,45.0
-Truck,Tesla,Semi,100,3,182-D-1623,9000.0,60.08,45.98,false,45.0
-Truck,Tesla,Semi,100,3,182-D-1223,10000.0,60.08,45.98,false,45.0
-Truck,Tesla,Semi,100,3,182-D-1125,10000.0,60.08,45.98,false,45.0
-Truck,Tesla,Semi,100,3,182-D-1879,10000.0,60.08,45.98,false,45.0
-Truck,Tesla,Semi,100,3,182-D-1579,10000.0,60.08,45.98,false,45.0
-Truck,Tesla,Semi,100,3,182-D-1079,10000.0,60.08,45.98,false,45.0
-Truck,Tesla,Semi,100,3,182-D-1659,10000.0,60.08,45.98,false,45.0
-Truck,Tesla,Semi,100,3,182-D-1649,10000.0,60.08,45.98,false,45.0
-Truck,Tesla,Semi,100,3,182-D-1640,9000.0,60.08,45.98,false,45.0
+Car,Tesla,Model S,150,5,161-MN-9856,10000.0,60.08,45.98,true
+Car,Tesla,Model S,150,5,161-D-5789,10000.0,60.08,45.98,true
+Van,Ford,Transit,100,3,181-CW-2014,10000.0,60.08,45.98,true,10.0
+Van,Ford,Transit,100,3,181-LD-3458,9000.0,60.08,45.98,true,10.0
+Van,Ford,Transit,100,3,181-CW-0123,10000.0,60.08,45.98,true,10.0
+Van,Ford,Transit,100,3,181-DL-4987,10000.0,60.08,45.98,true,10.0
+Van,Ford,Transit,100,3,151-DL-9856,10000.0,60.08,45.98,true,10.0
+Van,Ford,Transit,100,3,151-D-5789,10000.0,60.08,45.98,true,10.0
+Van,Ford,Transit,100,3,151-CE-9856,10000.0,60.08,45.98,true,10.0
+Van,Ford,Transit,100,3,151-D-5789,10000.0,60.08,45.98,true,10.0
+Van,Ford,Transit,100,3,181-L-5742,10000.0,60.08,45.98,true,10.0
+Van,Ford,Transit,100,3,181-D-8796,9000.0,60.08,45.98,true,10.0
+4x4,Tesla,Model X,100,5,181-CW-2014,10000.0,60.08,45.98,true
+4x4,Tesla,Model X,100,5,181-LD-3458,9000.0,60.08,45.98,true
+4x4,Tesla,Model X,100,5,181-CW-0123,10000.0,60.08,45.98,true
+4x4,Tesla,Model X,100,5,181-DL-4987,10000.0,60.08,45.98,true
+4x4,Tesla,Model X,100,5,151-DL-9856,10000.0,60.08,45.98,true
+4x4,Tesla,Model X,100,5,151-D-5789,10000.0,60.08,45.98,true
+4x4,Tesla,Model X,100,5,151-CE-9856,10000.0,60.08,45.98,true
+4x4,Tesla,Model X,100,5,151-D-5789,10000.0,60.08,45.98,true
+4x4,Tesla,Model X,100,5,181-L-5742,10000.0,60.08,45.98,true
+4x4,Tesla,Model X,100,5,181-D-8796,9000.0,60.08,45.98,true
+Truck,Tesla,Semi,100,3,182-D-1275,10000.0,60.08,45.98,true,45.0
+Truck,Tesla,Semi,100,3,182-D-1623,9000.0,60.08,45.98,true,45.0
+Truck,Tesla,Semi,100,3,182-D-1223,10000.0,60.08,45.98,true,45.0
+Truck,Tesla,Semi,100,3,182-D-1125,10000.0,60.08,45.98,true,45.0
+Truck,Tesla,Semi,100,3,182-D-1879,10000.0,60.08,45.98,true,45.0
+Truck,Tesla,Semi,100,3,182-D-1579,10000.0,60.08,45.98,true,45.0
+Truck,Tesla,Semi,100,3,182-D-1079,10000.0,60.08,45.98,true,45.0
+Truck,Tesla,Semi,100,3,182-D-1659,10000.0,60.08,45.98,true,45.0
+Truck,Tesla,Semi,100,3,182-D-1649,10000.0,60.08,45.98,true,45.0
+Truck,Tesla,Semi,100,3,182-D-1640,9000.0,60.08,45.98,true,45.0

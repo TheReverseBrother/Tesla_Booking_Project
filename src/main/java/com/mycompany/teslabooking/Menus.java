@@ -1,6 +1,6 @@
 package com.mycompany.teslabooking;
 
-import java.util.InputMismatchException;
+
 import java.util.Scanner;
 
 //Main class was getting very cluttered with large amount of menus so i put them all here
@@ -48,9 +48,10 @@ public class Menus
         bookingMenuSelector();
     }
 
-
-
-    enum Mainmenu {Passengers,Bookings,Vehicles,Quit;}
+    /**
+     * Displays Main Menu returns false if Quit is selected otherwise keeps running true and the programming going.
+     * @return
+     */
     public static boolean mainMenuSelector()
     {
 
@@ -59,16 +60,16 @@ public class Menus
         Mainmenu options = Mainmenu.values()[input];
         switch(options)
         {
-            case Passengers:
+            case PASSENGERS:
                 passengerMenu();
                 break;
-            case Bookings:
+            case BOOKINGS:
                 bookingsMenu();
                 break;
-            case Vehicles:
+            case VEHICLES:
                 vehicleMenu();
                 break;
-            case Quit:
+            case QUIT:
                 return false;
             default:
                 System.out.println("Invalid Input.");
@@ -77,9 +78,9 @@ public class Menus
         return true;
     }
 
-    enum vehicleMenu{View,Add,Quit;}
-    enum GeneralMenu{View,Add,Remove,Edit,Quit;}
-
+    /**
+     * Displays the passenger menu and allows you to select it
+     */
     public static void passengerMenuSelector()
     {
 
@@ -88,20 +89,20 @@ public class Menus
         GeneralMenu options = GeneralMenu.values()[input];
         switch(options)
         {
-            case View:
+            case VIEW:
                 DisplaySettings.displayPassengers(Main.PassengerList);
                 break;
-            case Add:
+            case ADD:
                 Main.PassengerList.add(addClass.addPassenger(Main.PassengerList));
                 break;
-            case Remove:
+            case REMOVE:
                 int ID = Remove.removePassenger();
                 Main.PassengerList.remove(ID);
                 break;
-            case Edit:
+            case EDIT:
                 Edit.EditPassenger();
                 break;
-            case Quit:
+            case QUIT:
 
                 break;
             default:
@@ -110,7 +111,9 @@ public class Menus
         }
     }
 
-
+    /**
+     * Displays Vehicle menu and changes to whatever screen people want
+     */
     public static void vehicleMenuSelector()
     {
         int input = vehicleChecker();
@@ -118,14 +121,14 @@ public class Menus
         vehicleMenu options = vehicleMenu.values()[input];
         switch(options)
         {
-            case View:
+            case VIEW:
                 String type =  Main.VehicleSelect();
                 DisplaySettings.displayVehiclesByType(Main.VehicleList,type);
                 break;
-            case Add:
+            case ADD:
                 Main.VehicleList.add(addClass.addVehicle(Main.VehicleList));
                 break;
-            case Quit:
+            case QUIT:
 
                 break;
             default:
@@ -133,7 +136,9 @@ public class Menus
         }
     }
 
-
+    /**
+     * Displays Booking menu and changes to whatever screen people want
+     */
     public static void bookingMenuSelector()
     {
 
@@ -142,29 +147,32 @@ public class Menus
         GeneralMenu options = GeneralMenu.values()[input];
         switch(options)
         {
-            case View:
+            case VIEW:
                 DisplaySettings.displayBookings(Main.Bookings);
                 break;
-            case Add:
+            case ADD:
                 String psg = Main.selectCurrentPassenger();
                 Main.Bookings.add(addClass.addBooking(Main.VehicleList,psg));
                 break;
-            case Remove:
-//                int ID = Remove.removeBooking();
+            case REMOVE:
                 int ID = Main.BookingSelector();
                 System.out.println("Booking Successfully Deleted");
                 Main.Bookings.remove(ID);
                 break;
-            case Edit:
+            case EDIT:
                 Edit.EditBooking();
                 break;
-            case Quit:
+            case QUIT:
                 break;
             default:
                 System.out.println("Invalid Input.");
 
         }
     }
+
+    /**
+     * Only allows selected int to be returned to the menuselector
+     */
     public static int menuChecker()
     {
         boolean running = true;
@@ -184,6 +192,9 @@ public class Menus
         }
         return input;
     }
+    /**
+     * Only allows selected int to be returned to the menuselector
+     */
     public static int MainmenuChecker()
     {
         boolean running = true;
@@ -203,6 +214,9 @@ public class Menus
         }
         return input;
     }
+    /**
+     * Only allows selected int to be returned to the menuselector
+     */
     public static int vehicleChecker()
     {
         boolean running = true;
@@ -222,6 +236,11 @@ public class Menus
         }
         return input;
     }
+
+    /**
+     * This returns an int so long as user input is an int else it keeps asking for an int
+     * @return
+     */
     public static int integerChecker()
     {
         Scanner sc = new Scanner(System.in);

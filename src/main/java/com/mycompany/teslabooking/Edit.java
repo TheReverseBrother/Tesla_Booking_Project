@@ -7,6 +7,9 @@ import java.util.Scanner;
 
 public class Edit
 {
+    /**
+     * Calls a passenger selector and allows you to set new values for passenger details except for passenger ID and email as those are kept
+     */
     public static void EditPassenger()
     {
         String PassengerID = Main.selectCurrentPassenger();
@@ -57,6 +60,11 @@ public class Edit
 
 
     }
+
+    /**
+     * Allows the editing of a selected booking chosen from the booking selector class in main.
+     */
+
     public static void EditBooking()
     {
         int bookingid = Main.BookingSelector();
@@ -80,6 +88,10 @@ public class Edit
         Main.Bookings.get(bookingid).setBookingCost(cost);
     }
 
+    /**
+     * This returns a date by continously parsing user input until a correct date is entered
+     * @return
+     */
     public static Date dateChecker()
     {
         Scanner sc = new Scanner(System.in);
@@ -107,6 +119,10 @@ public class Edit
         return gg;
     }
 
+    /**
+     * This returns an int by continously parsing user input until a correct in is entered.
+     * @return
+     */
     public static double doubleChecker()
     {
         Scanner sc = new Scanner(System.in);
@@ -128,6 +144,10 @@ public class Edit
         return number;
     }
 
+    /**
+     * This returns an int by continously parsing user input until a correct in is entered.
+     * @return
+     */
     public static int integerChecker()
     {
         Scanner sc = new Scanner(System.in);

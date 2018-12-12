@@ -8,6 +8,10 @@ import java.util.Collections;
 
 public class DisplaySettings
 {
+    /**
+     * Takes Bookings and displays them
+     * @param Bookings
+     */
     public static void displayBookings(ArrayList<vehicleBooking> Bookings)
     {
         DecimalFormat NumF = new DecimalFormat("#.00");
@@ -36,6 +40,10 @@ public class DisplaySettings
 
     }
 
+    /**
+     * Displays All passengers
+     * @param PassengerList
+     */
     public static void displayPassengers(ArrayList<Passenger> PassengerList)
     {
         String passengerID,name,email,phoneNo,home;
@@ -57,6 +65,11 @@ public class DisplaySettings
         System.out.println("|_____________________________________________________________________________________________________________________________________|");
     }
 
+    /**
+     * Displays all vehicles by user defined type van car all etc
+     * @param Vehicles
+     * @param type
+     */
     public static void displayVehiclesByType(ArrayList<Vehicle> Vehicles,String type)
     {
         String model,make,milesPer,seats,reg,costPer,mileage,depot,isDepot,Loadspace,typeOF;

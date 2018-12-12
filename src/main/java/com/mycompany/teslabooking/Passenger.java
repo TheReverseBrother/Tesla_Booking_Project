@@ -1,5 +1,7 @@
 package com.mycompany.teslabooking;
 
+import java.util.Objects;
+
 public class Passenger
 {
     private String name;
@@ -9,7 +11,8 @@ public class Passenger
     private String phoneNumber;
     private Location home;
 
-    public Passenger(String name, String email, String phoneNumber, Location home) {
+    public Passenger(String name, String email, String phoneNumber, Location home)
+    {
         totalCustomers++;
         this.name = name;
         this.passengerID = "PSG-" +totalCustomers;
@@ -101,7 +104,23 @@ public class Passenger
     public String toString() {
         return "Passenger{" + "name=" + name + ", passengerID=" + passengerID + ", email=" + email + ", phoneNumber=" + phoneNumber + ", home=" + home + '}';
     }
-    
-    
-    
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Passenger passenger = (Passenger) o;
+        return Objects.equals(name, passenger.name) &&
+                Objects.equals(passengerID, passenger.passengerID) &&
+                Objects.equals(email, passenger.email) &&
+                Objects.equals(phoneNumber, passenger.phoneNumber) &&
+                Objects.equals(home, passenger.home);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(name, passengerID, email, phoneNumber, home);
+    }
 }
