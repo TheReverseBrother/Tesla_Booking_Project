@@ -30,7 +30,7 @@ public class DisplaySettings
             startLocation = ""+ Bookings.get(i).getStartLocation();
             endLocation = "" + Bookings.get(i).getEndLocation();
             vehicleBooked = ""+ Bookings.get(i).getVehicleBooked();
-            cost = ""+Bookings.get(i).getBookingCost();
+            cost = NumF.format(Bookings.get(i).getBookingCost());
             System.out.format(format, passengerID, bookingnumber, bookingDT,startLocation,endLocation,vehicleBooked,cost);
         }
         String average = NumF.format(Main.ShowAverage());

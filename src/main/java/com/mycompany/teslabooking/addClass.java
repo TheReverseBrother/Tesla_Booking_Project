@@ -209,6 +209,7 @@ public class addClass
                                     reg = vehicleList.get(i).getRegistration();
                                     vehicleList.get(i).setInDepot(false);
                                     running = false;
+                                    i = 1000;
                                 }
                             }
                         }
